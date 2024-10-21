@@ -12,3 +12,7 @@ Route::get('/emi',function(){
 Route::view('/inicio','login');
 
 Route::view('/fd','asd');
+
+Route::view('/administrador/destinos','vistas.destinosADM');
+
+Route::view('/vuelos','vistas.vuelosUsu');
