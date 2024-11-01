@@ -1,28 +1,31 @@
 
 {{-- NavBar --}}
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 border border-b-orange-400 border-b-4">
+<nav class=" border-gray-200 dark:bg-gray-900 border border-b-orange-400 border-b-4 
+bg-orange-300
+{{-- bg-gradient-to-t from-orange-300 to-yellow-100  --}}
+">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a style="cursor: pointer;" class="flex items-center space-x-3 rtl:space-x-reverse" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example" data-drawer-backdrop="true">
             <img src="{{ asset('images/logo.svg') }}" class="h-8" alt="Flowbite Logo" />
             {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Turista Sin Maps</span> --}}
-            <div class="flex self-center text-2xl font-semibold whitespace-nowrap">
-                <span class="hover:text-orange-300">T</span>
-                <span class="hover:text-orange-300">u</span>
-                <span class="hover:text-orange-300">r</span>
-                <span class="hover:text-orange-300">i</span>
-                <span class="hover:text-orange-300">s</span>
-                <span class="hover:text-orange-300">t</span>
-                <span class="hover:text-orange-300">a</span>
+            <div class="flex self-center text-2xl font-semibold whitespace-nowrap ">
+                <span class="hover:text-orange-500">T</span>
+                <span class="hover:text-orange-500">u</span>
+                <span class="hover:text-orange-500">r</span>
+                <span class="hover:text-orange-500">i</span>
+                <span class="hover:text-orange-500">s</span>
+                <span class="hover:text-orange-500">t</span>
+                <span class="hover:text-orange-500">a</span>
 
-                <span class="hover:text-orange-300 ms-2">S</span>
-                <span class="hover:text-orange-300">i</span>
-                <span class="hover:text-orange-300">n</span>
+                <span class="hover:text-orange-500 ms-2">S</span>
+                <span class="hover:text-orange-500">i</span>
+                <span class="hover:text-orange-500">n</span>
 
-                <span class="hover:text-orange-300 ms-2">M</span>
-                <span class="hover:text-orange-300">a</span>
-                <span class="hover:text-orange-300">p</span>
-                <span class="hover:text-orange-300">s</span>
+                <span class="hover:text-orange-500 ms-2">M</span>
+                <span class="hover:text-orange-500">a</span>
+                <span class="hover:text-orange-500">p</span>
+                <span class="hover:text-orange-500">s</span>
                 
             </div>
         </a>
@@ -34,6 +37,7 @@
                 </svg>
                 <span class="sr-only">{{__('Buscar')}}</span>
             </button>
+
             <div class="relative hidden md:block">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -43,6 +47,7 @@
                 </div>
                 <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
             </div>
+
             <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -54,17 +59,17 @@
             <div class="flex ms-5">
 
                 <a href="" class="place-self-center me-5">
-                    <i class="fa-solid fa-bell fa-2xl"></i>
+                    <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
                 </a>
 
                 <a href="" class="place-self-center">
-                    <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+                    <i class="fa-solid fa-cart-shopping fa-2xl hover:text-gray-600"></i>
                 </a>
-                <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-[1px]">
-                    <span class="w-auto px-1">1</span>
+                <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-[1px] text-center">
+                    <span class="w-auto px-1">10</span>
                 </div>
                 <a href="" class="place-self-center ms-4">
-                    <i class="fa-solid fa-user fa-2xl"></i>
+                    <i class="fa-solid fa-user fa-2xl fa-regular hover:text-gray-600"></i>
                 </a>
             </div>
         </div>

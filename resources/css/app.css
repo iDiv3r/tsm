@@ -2,6 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
+
 [x-cloak] {
     display: none;
 }
+
+.imagen{
+    background-image:  url('../../storage/app/public/profile-photos/xDzmIiMOTy7g0btedwANl0cxGtoaqFfXTJFXe757.jpg') ;
+    background-color: aqua;
+}
+
+
+
+.rating-wrapper-hl {
+    align-self: center;
+    display: inline-flex;
+    direction: rtl !important;
+    margin-left: auto;
+    
+
+    label {
+    color: #E1E6F6;
+    display: inline-flex;
+    font-size: 2rem;
+    padding: 0rem .2rem;
+    transition: color 0.5s;
+    }
+    
+    svg {
+    -webkit-text-fill-color: transparent;
+    -webkit-filter: drop-shadow (4px 1px 6px rgba(198, 206, 237, 1));
+    filter:drop-shadow(5px 1px 3px rgba(198, 206, 237, 1));
+    }
+
+    input {
+    height: 100%;
+    width: 100%;
+    }
+    
+    input {
+    display: none;
+    }
+
+    
+    input:checked ~ label  {
+    color: #FDDA0D;
+    }
+
+    
+    input:checked ~ label  {
+    color: #FDDA0D;
+    }
+}
+
+.rating-wrapper {
+    align-self: center;
+    display: inline-flex;
+    direction: rtl !important;
+    margin-left: auto;
+    
+
+    label {
+    color: #E1E6F6;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 2rem;
+    padding: 0rem .2rem;
+    transition: color 0.5s;
+    }
+    
+    svg {
+    -webkit-text-fill-color: transparent;
+    -webkit-filter: drop-shadow (4px 1px 6px rgba(198, 206, 237, 1));
+    filter:drop-shadow(5px 1px 3px rgba(198, 206, 237, 1));
+    }
+
+    input {
+    height: 100%;
+    width: 100%;
+    }
+    
+    input {
+    display: none;
+    }
+
+    label:hover,
+    label:hover ~ label,
+    input:checked ~ label  {
+    color: #FDDA0D;
+    }
+
+    label:hover,
+    label:hover ~ label,
+    input:checked ~ label  {
+    color: #FDDA0D;
+    }
+}
+
+
+
+

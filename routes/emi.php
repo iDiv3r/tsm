@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ViewsController;
 
 Route::view('/prueba','prueba');
 
@@ -15,4 +15,7 @@ Route::view('/fd','asd');
 
 Route::view('/administrador/destinos','vistas.destinosADM');
 
-Route::view('/vuelos','vistas.vuelosUsu');
+
+// Route::view('/v2','vistas.vuelos2');
+
+route::get('/v2',[ViewsController::class,'vuelos']);
