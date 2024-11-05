@@ -1,13 +1,66 @@
 @extends('layouts.plantilla1')
 
 @section('content')
+<link href="{{ asset('/css/adminDestinos.css') }}" rel="stylesheet">
+
+<div  class="  bg-[#ECF0F5]">
+    <button data-collapse-toggle="filtro" type="button" class="inline-flex items-center mt-3 p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="filtro" aria-expanded="false">
+            <i class="fa-solid fa-filter h-2 m-2"></i>
+    </button>
+
+</div>
+<div class=" flex grid grid-cols-1   gap-4  h-auto min-h-full  bg-[#ECF0F5]">
+
+        <!-- Menu de Filtros -->
+        
+        <div class=" hidden md:hidden sm:block sm:col-span-12" id="filtro">
+            <div class=" p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
+                
+                <div class="mb-1 flex   justify-self-center gap-5">
+                    <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"><i class="fa-solid fa-filter h-2 m-2"></i>Filtros</h5>
+                </div>
+                    
+
+                <ul class="space-y-2 font-medium ">
+                    <li class="border-t-2 border-orange-500 dark:border-gray-700 pt-4 mt-4 ">
+
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">País</h6>
 
 
-<div class=" grid grid-cols-8  gap-4 size-full ms:auto-rows-min md:size-auto  bg-[#ECF0F5]">
-    
+                            <div class="flex items-center">
+                                <input type="text" id="b-pais" class="block w-full p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
+                            </div>
+                    </li>
+
+                    <li class="border-t-2 border-orange-500 dark:border-gray-700 pt-4 mt-4 ">
+
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Ciudad</h6>
+
+
+                            <div class="flex items-center">
+                                <input type="text" id="b-ciudad" class="block w-full p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
+                            </div>
+                    </li>
+
+                    <li class="border-t-2 border-orange-500 dark:border-gray-700 py-4 mt-4 ">
+
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Aeropuerto</h6>
+
+                        <div class="relative mb-3">
+                            <input type="text" id="b-aeropuerto" class="block w-full p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
+                        </div>
+
+                    </li>
+
+                    
+                </ul>
+            </div>
+        
+        </div>
+        <!-- Fin de menu Filtros -->
 
     {{-- container tabla --}}
-    <div class="container pt-10 ps-10 col-span-5">
+    <div class="container pt-10 ps-10 md:col-span-5 sm:col-span-12">
 
         <div class="mb-5 flex items-center align-middle">
             <i class="fa-solid fa-map-location fa-2xl"></i>
@@ -88,10 +141,10 @@
 
     {{-- container filtros --}}
 
-    <div class="pt-20 pe-10 col-span-2 col-end-9 ">
-        <div class=" p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" hidden  pt-20 pe-10 md:col-span-2 md:col-end-9  sm:col-span-12  md:block sm:hidden">
+        <div class=" p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
             
-            <div class="mb-1 flex items-center align-middle gap-5">
+            <div class="mb-1 flex items-center align-middle text-center gap-5  justify-self-center">
                 <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"><i class="fa-solid fa-filter h-2 m-2"></i>Filtros</h5>
             </div>
                 
@@ -101,21 +154,20 @@
 
                     <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">País</h6>
 
-                    <div class="flex items-center">
-                        <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
-                    </div>
+
+                        <div class="flex items-center">
+                            <input type="text" id="b-pais" class="block w-full p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
+                        </div>
                 </li>
 
                 <li class="border-t-2 border-orange-500 dark:border-gray-700 pt-4 mt-4 ">
 
                     <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Ciudad</h6>
 
-                    <div class="flex gap-6">
 
                         <div class="flex items-center">
-                            <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+                            <input type="text" id="b-ciudad" class="block w-full p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
                         </div>
-                    </div>
                 </li>
 
                 <li class="border-t-2 border-orange-500 dark:border-gray-700 py-4 mt-4 ">
@@ -123,7 +175,7 @@
                     <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Aeropuerto</h6>
 
                     <div class="relative mb-3">
-                        <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+                        <input type="text" id="b-aeropuerto" class="block w-full p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar...">
                     </div>
 
                 </li>
@@ -131,6 +183,7 @@
                 
             </ul>
         </div>
+        
     </div>
 
     {{-- cierra container filtros ------------------------------------------------------------------------------------------------------------------------------------------ --}}
