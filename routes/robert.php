@@ -8,3 +8,6 @@ Route::view('/prueba','prueba');
 Route::get('/rob',function(){
     return 'Robert';
 });
+
+
+route::view('/adminDestinos','adminDestinos');
