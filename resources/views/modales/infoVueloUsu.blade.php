@@ -140,7 +140,7 @@
                             
                         </div>
                         <div class="">
-                            <div class="rating-wrapper-hl mb-1">
+                            {{-- <div class="rating-wrapper-hl mb-1">
             
                                 <!-- star 5 -->
                                 
@@ -172,7 +172,9 @@
                                 <i class="fas fa-star d-inline-block fa-2xs"></i>
                                 </label>
                                 
-                            </div>
+                            </div> --}}
+
+                            <x-static_star_rating></x-static_star_rating>
                             <p class="mt-2">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                             </p>

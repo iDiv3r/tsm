@@ -17,15 +17,15 @@
 .rating-wrapper-hl {
     align-self: center;
     display: inline-flex;
-    direction: rtl !important;
-    margin-left: auto;
+    direction: ltr !important;
+    /* margin-left: auto; */
     
 
     label {
-    color: #E1E6F6;
+    color: #FDDA0D;
     display: inline-flex;
     font-size: 2rem;
-    padding: 0rem .2rem;
+    padding: 0rem 0rem;
     transition: color 0.5s;
     }
     
@@ -46,12 +46,12 @@
 
     
     input:checked ~ label  {
-    color: #FDDA0D;
+    color: #E1E6F6;
     }
 
     
     input:checked ~ label  {
-    color: #FDDA0D;
+    color: #E1E6F6;
     }
 }
 

@@ -15,4 +15,22 @@ class ViewsController extends Controller
             'paises'=>$paises
         ]);
     }
+
+    public function hoteles (){
+        $paises = Country::all();
+
+        return view('vistas.hotelesU',[
+            'paises'=>$paises
+        ]);
+    }
+
+    public function carrito (){
+        $paises = Country::all();
+
+        return view('vistas.carrito',[
+            'paises'=>$paises
+        ]);
+    }
 }
+
+

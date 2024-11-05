@@ -11,11 +11,14 @@ Route::get('/emi',function(){
 
 Route::view('/inicio','login');
 
-Route::view('/fd','asd');
-
 Route::view('/administrador/destinos','vistas.destinosADM');
 
 
-// Route::view('/v2','vistas.vuelos2');
 
-route::get('/v2',[ViewsController::class,'vuelos']);
+
+
+Route::get('/v2',[ViewsController::class,'vuelos']);
+
+Route::get('/h',[ViewsController::class,'hoteles']);
+
+Route::get('/c',[ViewsController::class,'carrito']);
