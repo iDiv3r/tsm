@@ -58,7 +58,7 @@ bg-orange-300
             
             <div class="flex ms-5">
 
-                {{-- <a href="" class="place-self-center me-5">
+                <a href="" class="place-self-center me-5">
                     <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
                 </a>
 
@@ -67,7 +67,7 @@ bg-orange-300
                 </a>
                 <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-[1px] text-center">
                     <span class="w-auto px-1">10</span>
-                </div> --}}
+                </div>
                 <a href="" class="place-self-center ms-4">
                     <i class="fa-solid fa-user fa-2xl fa-regular hover:text-gray-600"></i>
                 </a>
