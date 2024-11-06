@@ -21,5 +21,23 @@ class ControllerDestinoAdm extends Controller
         'txtorigen'=> 'required',
         'txtdestino'=> 'required',
     ]);
+    session()->flash('exitoedit');
+    }
+
+    public function editarDestino(Request $peticion)
+   {
+    
+    $validacion= $peticion->validate([
+        'txtcodigo'=> 'required',
+        'txtfechas'=> 'required',
+        'txtfechar'=> 'required',
+        'txtduracion'=> 'required',
+        'txttelefono'=> 'required',
+        'txtpasajeros'=> 'required',
+        'txtcategoria'=> 'required',
+        'txtaerolinea'=> 'required',
+        'txtorigen'=> 'required',
+        'txtdestino'=> 'required',
+    ]);
     }
 }

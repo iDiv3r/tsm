@@ -12,4 +12,6 @@ Route::get('/andy',function(){
 
 Route::view('/administrador/vuelos','vistas.vuelosADM');
 
+
 Route::post('/administrador/vuelos',[ControllerDestinoAdm::class,'procesarModal'])->name('procesarModal');
+Route::post('/administrador/vueloseditar',[ControllerDestinoAdm::class,'editarDestino'])->name('procesarEditar');
