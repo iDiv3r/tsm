@@ -24,17 +24,17 @@
                         <!-- Código, Fecha Salida, Fecha Regreso ----------------------------------------------------------->
                         <div>
                             <label for="codigo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                            <input type="text" name="codigo" id="codigo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtcodigo')}}" >
+                            <input type="text" name="codigo" id="codigo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('codigo')}}" >
                             <small class="text-red-500"> {{ $errors->first('codigo') }}</small>
                         </div>
                         <div>
                             <label for="fechaSalida" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha salida</label>
-                            <input type="date" name="fechas" id="fechaSalida" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtfechas')}}">
+                            <input type="date" name="fechas" id="fechaSalida" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('fechas')}}">
                             <small class="text-red-500"> {{ $errors->first('fechas') }} </small>
                         </div>
                         <div>
                             <label for="fechaRegreso" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha regreso</label>
-                            <input type="date" name="fechar" id="fechaRegreso" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtfechar')}}">
+                            <input type="date" name="fechar" id="fechaRegreso" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('fechar')}}">
                             <small class="text-red-500"> {{ $errors->first('fechar') }} </small>
                         </div>
                     </div>
@@ -42,17 +42,17 @@
                         <!-- Duración, Teléfono, Pasajeros ---------------------------------------------------->
                         <div>
                             <label for="duracion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duración</label>
-                            <input type="time" name="duracion" id="duracion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtduracion')}}">
+                            <input type="number" name="duracion" id="duracion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('duracion')}}">
                             <small class="text-red-500"> {{ $errors->first('duracion') }} </small>
                         </div>
                         <div>
                             <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
-                            <input type="number" name="telefono" id="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txttelefono')}}">
+                            <input type="number" name="telefono" id="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('telefono')}}">
                             <small class="text-red-500"> {{ $errors->first('telefono') }} </small>
                         </div>
                         <div>
                             <label for="pasajeros" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pasajeros</label>
-                            <input type="number" name="pasajeros" id="pasajeros" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtpasajeros')}}">
+                            <input type="number" name="pasajeros" id="pasajeros" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('pasajeros')}}">
                             <small class="text-red-500"> {{ $errors->first('pasajeros') }} </small>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <!-- Categoría, Aerolínea ---------------------------------------------------------------------------------->
                         <div>
                             <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
-                            <select id="categoria" name="categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtcategoria')}}">
+                            <select id="categoria" name="categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('categoria')}}">
                             <small class="text-red-500"> {{ $errors->first('categoria') }} </small>
                                 <option selected="">Seleccionar categoría</option>
                                 <option value="AA">AAAAA</option>
@@ -69,7 +69,7 @@
                         </div>
                         <div>
                             <label for="aerolinea" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aerolínea</label>
-                            <select id="aerolinea" name="aerolinea" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtaerolinea')}}">
+                            <select id="aerolinea" name="aerolinea" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('aerolinea')}}">
                             <small class="text-red-500"> {{ $errors->first('aerolinea') }} </small>
                                 <option selected="">Seleccionar aerolínea</option>
                                 <option value="AM">Aerolínea</option>
@@ -81,12 +81,12 @@
                         <!-- Origen, Destino ------------------------------------------------------------------------------------------->
                         <div>
                             <label for="origen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Origen</label>
-                            <input type="text" name="origen" id="origen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtorigen')}}" >
+                            <input type="text" name="origen" id="origen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('origen')}}" >
                             <small class="text-red-500"> {{ $errors->first('origen') }} </small>
                         </div>
                         <div>
                             <label for="destino" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino</label>
-                            <input type="text" name="destino" id="destino" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtdestino')}}">
+                            <input type="text" name="destino" id="destino" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('destino')}}">
                             <small class="text-red-500"> {{ $errors->first('destino') }} </small>
                         </div>
                     </div>

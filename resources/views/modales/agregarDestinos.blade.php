@@ -41,7 +41,7 @@
                         <!-- Duración, Teléfono, Pasajeros ---------------------------------------------------->
                         <div>
                             <label for="duracion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duración</label>
-                            <input type="time" name="txtduracion" id="duracion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtduracion')}}">
+                            <input type="number" name="txtduracion" id="duracion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtduracion')}}">
                             <small class="text-red-500"> {{ $errors->first('txtduracion') }} </small>
                         </div>
                         <div>
