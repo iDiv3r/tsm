@@ -130,7 +130,7 @@
     {{-- container filtros --}}
 
     <div class="pt-20 pe-10 sm:block sm:col-span-12">
-        <div class="max-w-sm p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             
             <div class="mb-5 flex items-center align-middle gap-5">
                 {{-- <i class="fa-solid fa-filter fa-2xl"></i> --}}

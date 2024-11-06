@@ -17,8 +17,8 @@ Route::view('/administrador/destinos','vistas.destinosADM');
 
 
 
-Route::get('/v2',[ViewsController::class,'vuelos']);
+Route::get('/v2',[ViewsController::class,'vuelos'])->name('rutaVuelosUsuarios');
 
-Route::get('/h',[ViewsController::class,'hoteles']);
+Route::get('/h',[ViewsController::class,'hoteles'])->name('rutaHotelesUsuarios');
 
-Route::get('/c',[ViewsController::class,'carrito']);
+Route::get('/c',[ViewsController::class,'carrito'])->name('rutaCarrito');

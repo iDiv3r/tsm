@@ -102,7 +102,7 @@
     {{-- container filtros --}}
 
     <div class="pt-20 pe-10">
-        <div class="max-w-sm p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             
             <div class="mb-5 flex items-center align-middle gap-5">
                 {{-- <i class="fa-solid fa-filter fa-2xl"></i> --}}
@@ -119,7 +119,7 @@
                     <div class="relative mb-6">
                         <label for="labels-range-input" class="sr-only">Labels range</label>
 
-                        <input id="labels-range-input" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-white rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="labels-range-input" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200  rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($0)</span>
                         
                         <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($100,000)</span>
