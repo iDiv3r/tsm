@@ -2,7 +2,7 @@
 {{-- NavBar --}}
 
 <nav class=" border-gray-200 dark:bg-gray-900 border border-b-orange-400 border-b-4 
-
+bg-orange-300
 {{-- bg-gradient-to-t from-orange-300 to-yellow-100  --}}
 ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
