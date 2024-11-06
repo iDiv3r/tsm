@@ -21,7 +21,8 @@ class ControllerDestinoAdm extends Controller
         'txtorigen'=> 'required',
         'txtdestino'=> 'required',
     ]);
-    session()->flash('exitoedit');
+    session()->flash('exito','Vuelo agregado');
+    return to_route('vuelosAdministrador');
     }
 
     public function editarDestino(Request $peticion)
@@ -39,5 +40,7 @@ class ControllerDestinoAdm extends Controller
         'txtorigen'=> 'required',
         'txtdestino'=> 'required',
     ]);
+    session()->flash('exito','Vuelo editado');
+    return to_route('vuelosAdministrador');
     }
 }
