@@ -10,7 +10,7 @@ Route::get('/andy',function(){
     return 'Andrea';
 });
 
-Route::view('/administrador/vuelos','vistas.vuelosADM');
+Route::view('/administrador/vuelos','vistas.vuelosADM')->name('vuelosAdministrador');
 
 
 Route::post('/administrador/vuelos',[ControllerDestinoAdm::class,'procesarModal'])->name('procesarModal');

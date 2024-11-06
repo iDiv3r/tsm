@@ -58,7 +58,7 @@ bg-orange-300
             
             <div class="flex ms-5">
 
-                <a href="" class="place-self-center me-5">
+                {{-- <a href="" class="place-self-center me-5">
                     <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
                 </a>
 
@@ -67,7 +67,7 @@ bg-orange-300
                 </a>
                 <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-[1px] text-center">
                     <span class="w-auto px-1">10</span>
-                </div>
+                </div> --}}
                 <a href="" class="place-self-center ms-4">
                     <i class="fa-solid fa-user fa-2xl fa-regular hover:text-gray-600"></i>
                 </a>
@@ -121,7 +121,7 @@ bg-orange-300
             <div class="h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{route('rutaadminDestino')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-map-location fa-xl"></i>
                             <span class="ms-3">Destinos</span>
                         </a>
@@ -130,7 +130,7 @@ bg-orange-300
                 
                 <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{route('vuelosAdministrador')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-plane-departure fa-xl"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Vuelos</span>
                             
@@ -140,7 +140,7 @@ bg-orange-300
 
                 <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{route('hotelesAdministrador')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-hotel fa-xl"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Hoteles</span>
                         </a>
@@ -149,7 +149,7 @@ bg-orange-300
 
                 <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{route('rutaadminReporte')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-file fa-xl"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Reportes</span>
                         </a>

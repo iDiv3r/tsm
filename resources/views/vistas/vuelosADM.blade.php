@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('content')
-<div class="flex grid-cols-2 gap-20 w-100 md:row">
+<div class="flex grid-cols-1 gap-20 w-100 md:row">
     
 
     {{-- container tabla --}}
