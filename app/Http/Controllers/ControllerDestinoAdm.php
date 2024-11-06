@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class ControllerDestinoAdm extends Controller
 {
-   public function procesarModal(Request $peticion)
+   public function agregar(Request $peticion)
    {
     
-    $validacion= $peticion->validate([
+    $peticion->validate([
         'txtcodigo'=> 'required',
         'txtfechas'=> 'required',
         'txtfechar'=> 'required',
@@ -25,20 +25,20 @@ class ControllerDestinoAdm extends Controller
     return to_route('vuelosAdministrador');
     }
 
-    public function editarDestino(Request $peticion)
+    public function editar(Request $peticion)
    {
     
-    $validacion= $peticion->validate([
-        'txtcodigo'=> 'required',
-        'txtfechas'=> 'required',
-        'txtfechar'=> 'required',
-        'txtduracion'=> 'required',
-        'txttelefono'=> 'required',
-        'txtpasajeros'=> 'required',
-        'txtcategoria'=> 'required',
-        'txtaerolinea'=> 'required',
-        'txtorigen'=> 'required',
-        'txtdestino'=> 'required',
+    $peticion->validate([
+        'codigo'=> 'required',
+        'fechas'=> 'required',
+        'fechar'=> 'required',
+        'duracion'=> 'required',
+        'telefono'=> 'required',
+        'pasajeros'=> 'required',
+        'categoria'=> 'required',
+        'aerolinea'=> 'required',
+        'origen'=> 'required',
+        'destino'=> 'required',
     ]);
     session()->flash('exito','Vuelo editado');
     return to_route('vuelosAdministrador');
