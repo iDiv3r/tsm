@@ -17,7 +17,6 @@ class DestinoAdm extends Controller
             'aeropuerto'=>'required',
         ]);
         
-       
         session()->flash('exitoadd');
         
         return to_route('rutaadminDestino');

@@ -1,16 +1,16 @@
-@extends('layouts.plantilla1')
+@extends('layouts.plantilla')
 
 @section('content')
 
 <link href="{{ asset('/css/adminDestinos.css') }}" rel="stylesheet">
 
-<div  class="  bg-[#ECF0F5]">
+<div  class="">
     <button data-collapse-toggle="filtro" type="button" class="inline-flex items-center mt-3 p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="filtro" aria-expanded="false">
             <i class="fa-solid fa-filter h-2 m-2"></i>
     </button>
 
 </div>
-<div class=" flex grid grid-cols-1   gap-4  h-auto min-h-full  bg-[#ECF0F5]">
+<div class="grid grid-cols-1 gap-4 h-auto min-h-full ">
 
         <!-- Menu de Filtros -->
         
