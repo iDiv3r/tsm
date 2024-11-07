@@ -2,7 +2,18 @@
 
 @section('content')
 <div class="flex grid-cols-1 gap-20 w-100 md:row">
-    
+    @session('exito')
+
+        <script>
+            Swal.fire({
+                text: '{{ $value }}',
+                icon: "success"
+            });
+        </script>
+    @endsession
+
+   
+   
 
     {{-- container tabla --}}
     <div class="container pt-10 ps-10 ">
@@ -36,6 +47,7 @@
                         </th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -64,8 +76,6 @@
     
                         </td>
                     </tr>
-                    
-                    
                 </tbody>
             </table>
         </div>
@@ -88,8 +98,8 @@
         </ul>
     </div>
 
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-green-700 hover:bg-green-800   focus:ring-green-300-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-5" type="button">
-            Agregar vuelo
+        <button data-modal-target="agregarDestinos" data-modal-toggle="agregarDestinos" class="block text-white bg-green-700 hover:bg-green-800   focus:ring-green-300-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-5" type="button">
+            Agregar vuelo 
         </button>
 
     </div>
@@ -102,7 +112,7 @@
     {{-- container filtros --}}
 
     <div class="pt-20 pe-10">
-        <div class="max-w-sm p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             
             <div class="mb-5 flex items-center align-middle gap-5">
                 {{-- <i class="fa-solid fa-filter fa-2xl"></i> --}}
@@ -119,7 +129,7 @@
                     <div class="relative mb-6">
                         <label for="labels-range-input" class="sr-only">Labels range</label>
 
-                        <input id="labels-range-input" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-white rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="labels-range-input" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200  rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($0)</span>
                         
                         <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($100,000)</span>

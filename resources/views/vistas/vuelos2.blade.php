@@ -105,7 +105,7 @@
             </div>
 
 
-            <ul class="space-y-2 font-medium ">
+            <ul class="space-y-2 font-medium">
                 <li class="border-t-4 border-orange-500  pt-4 mt-4 pb-2 ">
                     <div class="">
                         <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 ">Origen</h6>

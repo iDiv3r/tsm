@@ -2,7 +2,7 @@
 {{-- NavBar --}}
 
 <nav class=" border-gray-200 dark:bg-gray-900 border border-b-orange-400 border-b-4 
-bg-orange-300
+bg-white
 {{-- bg-gradient-to-t from-orange-300 to-yellow-100  --}}
 ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -62,7 +62,7 @@ bg-orange-300
                     <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
                 </a>
 
-                <a href="" class="place-self-center">
+                <a href="{{ route('rutaCarrito') }}" class="place-self-center">
                     <i class="fa-solid fa-cart-shopping fa-2xl hover:text-gray-600"></i>
                 </a>
                 <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-[1px] text-center">
@@ -123,35 +123,51 @@ bg-orange-300
                     <li>
                         <a href="{{route('rutaadminDestino')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-map-location fa-xl"></i>
-                            <span class="ms-3">Destinos</span>
+                            <span class="ms-3">Destinos Admin</span>
                         </a>
                     </li> 
-                </ul>
                 
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                    <li>
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <a href="{{route('vuelosAdministrador')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-plane-departure fa-xl"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Vuelos</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Vuelos Admin</span>
                             
                         </a>
                     </li>
-                </ul>
-
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                    <li>
+                
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <a href="{{route('hotelesAdministrador')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-hotel fa-xl"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Hoteles</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Hoteles Admin</span>
                         </a>
                     </li>
-                </ul>
-
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                    <li>
+                
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <a href="{{route('rutaadminReporte')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-file fa-xl"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Reportes</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Reportes Admin</span>
+                        </a>
+                    </li>
+
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t-4 border-gray-500 dark:border-gray-700">
+                        <a href="{{route('rutaadminDestino')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i class="fa-solid fa-map-location fa-xl"></i>
+                            <span class="ms-3">Destinos Usuario</span>
+                        </a>
+                    </li> 
+                
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                        <a href="{{route('rutaVuelosUsuarios')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i class="fa-solid fa-plane-departure fa-xl"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Vuelos Usuario</span>
+                            
+                        </a>
+                    </li>
+                
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                        <a href="{{route('rutaHotelesUsuarios')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i class="fa-solid fa-hotel fa-xl"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Hoteles Usuario</span>
                         </a>
                     </li>
                 </ul>
