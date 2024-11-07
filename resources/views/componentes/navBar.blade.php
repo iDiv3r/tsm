@@ -58,22 +58,28 @@ bg-white
             
             <div class="flex ms-5">
 
-                <a href="" class="place-self-center me-5">
+                
+                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="w-min focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg py-2.5 text-center inline-flex items-center" type="button" data-dropdown-offset-skidding="100" data-dropdown-placement="left">
                     <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
-                </a>
+                </button>
+                <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full text-center me-4">
+                    <span class="w-auto px-1">1</span>
+                </div>
 
                 <a href="{{ route('rutaCarrito') }}" class="place-self-center">
                     <i class="fa-solid fa-cart-shopping fa-2xl hover:text-gray-600"></i>
                 </a>
-                <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-[1px] text-center">
-                    <span class="w-auto px-1">10</span>
+                <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-1 text-center">
+                    <span class="w-auto px-1">1 </span>
                 </div>
+
                 <a href="" class="place-self-center ms-4">
                     <i class="fa-solid fa-user fa-2xl fa-regular hover:text-gray-600"></i>
                 </a>
             </div>
         </div>
 
+        
 
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
             <div class="relative mt-3 md:hidden">
@@ -103,8 +109,22 @@ bg-white
 
 
 
-
-
+    
+    <!-- Dropdown menu -->
+    <div id="dropdownDivider" class="hidden bg-white rounded-lg shadow-lg lg:w-1/3 sm:w-2/3 border-2 border-gray-200 ">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+            <li>
+                <span href="#" class="block px-4 py-2 text-xl text-black font-bold hover:bg-gray-100 border-b-2 border-gray-200">Notificaciones</span>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+            </li>
+        </ul> 
+    </div>
+    
 
 
 {{-- Off Canvas Drawer --}}
