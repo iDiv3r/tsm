@@ -16,7 +16,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form  action="{{ route('agregar') }}" method="POST" class="p-4 md:p-5">
+            <form  action="{{ route('rutaAgregarVuelo') }}" method="POST" class="p-4 md:p-5">
             @csrf
                 <div class="grid gap-4 mb-4">
                     <div class="grid grid-cols-3 gap-4">

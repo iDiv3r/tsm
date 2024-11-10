@@ -16,7 +16,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="{{ route('editar') }}" method="POST" class="p-4 md:p-5">
+            <form action="{{ route('rutaEditarVuelo') }}" method="POST" class="p-4 md:p-5">
             @csrf
                 
                 <div class="grid gap-4 mb-4">

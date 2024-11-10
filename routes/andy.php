@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ControllerDestinoAdm;
+use App\Http\Controllers\AdminVuelos;
 use Illuminate\Support\Facades\Route;
 
 
@@ -10,7 +10,7 @@ Route::get('/andy',function(){
     return 'Andrea';
 });
 
-Route::view('/administrador/vuelos','vistas.vuelosADM')->name('vuelosAdministrador');
+Route::view('/administrador/vuelos','vistas.adminVuelos')->name('rutaAdminVuelos');
 
-Route::post('/vuelosAdmin',[ControllerDestinoAdm::class,'agregar'])->name('agregar');
-Route::post('/vueloseditAdmin',[ControllerDestinoAdm::class,'editar'])->name('editar');
+Route::post('/administrador/vuelos/agregar',[AdminVuelos::class,'agregar'])->name('rutaAgregarVuelo');
+Route::post('/administrador/vuelos/editar',[AdminVuelos::class,'editar'])->name('rutaEditarVuelo');

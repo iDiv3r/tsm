@@ -12,8 +12,6 @@
         </script>
     @endsession
 
-   
-   
 
     {{-- container tabla --}}
     <div class="container pt-10 ps-10 ">
@@ -303,8 +301,8 @@
 
     {{-- cierra container filtros ------------------------------------------------------------------------------------------------------------------------------------------ --}}
 </div>
-@include ('modales.agregarDestinos')
-@include ('modales.eliminarDestinos')
-@include ('modales.editarDestinos')
+@include ('modales.adminAgregarVuelo')
+@include ('modales.adminEditarVuelo')
+@include ('modales.adminEliminarVuelo')   
 
 @endsection

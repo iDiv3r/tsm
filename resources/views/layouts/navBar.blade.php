@@ -6,7 +6,7 @@ bg-white
 {{-- bg-gradient-to-t from-orange-300 to-yellow-100  --}}
 ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a style="cursor: pointer;" class="flex items-center space-x-3 rtl:space-x-reverse" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example" data-drawer-backdrop="true">
+        <button style="cursor: pointer;" class="flex items-center space-x-3 rtl:space-x-reverse" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example" data-drawer-backdrop="true">
             <img src="{{ asset('images/logo.svg') }}" class="h-8" alt="Flowbite Logo" />
             {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Turista Sin Maps</span> --}}
             <div class="flex self-center text-2xl font-semibold whitespace-nowrap ">
@@ -28,7 +28,7 @@ bg-white
                 <span class="hover:text-orange-500">s</span>
                 
             </div>
-        </a>
+        </button>
 
         <div class="flex md:order-2">
             <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
@@ -59,9 +59,10 @@ bg-white
             <div class="flex ms-5">
 
                 
-                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="w-min focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg py-2.5 text-center inline-flex items-center" type="button" data-dropdown-offset-skidding="100" data-dropdown-placement="left">
+                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="w-min font-medium rounded-lg py-2.5 text-center inline-flex items-center" type="button" data-dropdown-offset-skidding="120" data-dropdown-placement="left">
                     <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
                 </button>
+                
                 <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full text-center me-4">
                     <span class="w-auto px-1">1</span>
                 </div>
@@ -111,16 +112,28 @@ bg-white
 
     
     <!-- Dropdown menu -->
-    <div id="dropdownDivider" class="hidden bg-white rounded-lg shadow-lg lg:w-1/3 sm:w-2/3 border-2 border-gray-200 ">
+    <div id="dropdownDivider" class="hidden bg-white rounded-lg shadow-lg lg:w-1/3 sm:w-2/3 border-2 border-gray-200 z-10">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
             <li>
                 <span href="#" class="block px-4 py-2 text-xl text-black font-bold hover:bg-gray-100 border-b-2 border-gray-200">Notificaciones</span>
             </li>
             <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homero</span>
             </li>
             <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Hola</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homero</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cerveza :talking_head: :flame:</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homero</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Eso me gusta</span>
             </li>
         </ul> 
     </div>
@@ -148,7 +161,7 @@ bg-white
                     </li> 
                 
                     <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                        <a href="{{route('vuelosAdministrador')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{route('rutaAdminVuelos')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-plane-departure fa-xl"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Vuelos Admin</span>
                             

@@ -29,7 +29,7 @@
     </head>
     <body class="font-sans antialiased bg-orange-50">
         
-        @include('componentes.navBar')
+        @include('layouts.navBar')
 
         <div class="px-10 mb-10">
             @yield('content')
