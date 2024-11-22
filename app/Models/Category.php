@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Country extends Model
+class Category extends Model
 {
     use HasFactory;
 
-
-    public function cities(): HasMany
+    public function categoriesFlights(): HasMany
     {
-        return $this->hasMany(City::class);
+        return $this->hasMany(CategoriesFlights::class);
     }
 }
