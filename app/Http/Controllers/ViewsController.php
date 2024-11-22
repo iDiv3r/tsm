@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Models\City;
 
 class ViewsController extends Controller
 {
@@ -18,9 +19,11 @@ class ViewsController extends Controller
 
     public function hoteles (){
         $paises = Country::all();
+        $ciudades = City::all();
 
         return view('vistas.hotelesU',[
-            'paises'=>$paises
+            'paises'=>$paises,
+            'ciudades'=>$ciudades
         ]);
     }
 
