@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HotelesAdminController;
+use App\Http\Controllers\AdminHoteles;
 
 // Route::view('/prueba','prueba');
 
@@ -13,7 +13,7 @@ use App\Http\Controllers\HotelesAdminController;
 //     return view('vistas.hotelesA');
 // })->name('hotelesAdministrador');
 
-Route::get('/administrador/hoteles', [HotelesAdminController::class, 'vistaHoteles'])->name('hotelesAdministrador');
-Route::post('/administrador/hoteles/agregar', [HotelesAdminController::class, 'agregarHotel'])->name('agregarHotel');
-Route::post('/administrador/hoteles/editar', [HotelesAdminController::class, 'editarHotel'])->name('editarHotel');
-Route::post('/administrador/hoteles/eliminar', [HotelesAdminController::class, 'eliminarHotel'])->name('eliminarHotel');
+Route::get('/administrador/hoteles', [AdminHoteles::class, 'vistaHoteles'])->name('hotelesAdministrador');
+Route::post('/administrador/hoteles/agregar', [AdminHoteles::class, 'agregarHotel'])->name('agregarHotel');
+Route::post('/administrador/hoteles/editar', [AdminHoteles::class, 'editarHotel'])->name('editarHotel');
+Route::post('/administrador/hoteles/eliminar', [AdminHoteles::class, 'eliminarHotel'])->name('eliminarHotel');

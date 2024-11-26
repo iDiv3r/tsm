@@ -1,12 +1,12 @@
     
-<div id="static-modal" data-modal-backdrop="static" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="info-hotel-{{ $hotel->id }}" data-modal-backdrop="static" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-4xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 Más información
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="info-hotel-{{ $hotel->id }}">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
@@ -17,19 +17,63 @@
             <div class="p-10 space-y-4">
                 <div class="flex justify-start gap-10 mb-5">
 
-                    <img src="https://images.trvl-media.com/lodging/41000000/40600000/40594000/40593961/c2ec8eeb_w.jpg" alt="" class="rounded-lg flex lg:w-2/5 sm:w-1/2 h-min lg:place-self-start sm:place-self-center">
+                    {{-- <img src={{'storage/'.$imagen->foto}} alt="" class="rounded-lg flex lg:w-2/5 sm:w-1/2 lg:place-self-start sm:place-self-center" style="aspect-ratio:400/267"> --}}
 
+                    
+                    <div id="controls-carousel" class="relative lg:w-2/5 sm:w-1/2" data-carousel="static">
+                        <!-- Carousel wrapper -->
+                        <div class="relative h-64 overflow-hidden rounded-lg">
+                            @php  
+                                    $num_img = 0;
+                                @endphp
+
+                                @foreach ($imagenes as $imagen)                                    
+                                    @if ($hotel->id == $imagen->hotel_id)
+                                        <?php
+                                            $num_img ++;
+                                        ?>
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                                            <img src={{'storage/'.$imagen->foto}} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded" alt="..." style="aspect-ratio:400/267">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            
+                        </div>
+
+                        @if ($num_img > 1)    
+                            <!-- Slider controls -->
+                            <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg class="w-2 h-2 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                    </svg>
+                                    <span class="sr-only">Previous</span>
+                                </span>
+                            </button>
+                            <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg class="w-2 h-2 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                    </svg>
+                                    <span class="sr-only">Next</span>
+                                </span>
+                            </button>
+                        @endif
+                    </div>
+
+
+                    {{-- <img src={{'storage/'.$imagen->foto}} alt="" class="rounded-lg flex lg:w-2/5 sm:w-1/2 lg:place-self-start sm:place-self-center" style="aspect-ratio:400/267"> --}}
 
                     <div class="grid grid-cols-1 pe-5">
     
-                        <span class="text-xl h-min mb-2">Hotel Golden</span>
+                        <span class="text-xl h-min mb-2">{{ $hotel->nombre }}</span>
     
                         <x-static_star_rating ></x-static_star_rating>
     
                         <div class="flex align-center">
                             <div class="bg-gray-300 rounded flex items-center shadow h-min px-2 gap-2 sm:mb-2 mt-4  ">
-                                <span class="fi fi-be fa-sm"></span> 
-                                <span class="my-1">Ciudad: Bruselas Belgica</span>
+                                <span class="fi fi-{{ $hotel->bandera }} fa-sm"></span> 
+                                <span class="my-1">Ciudad: {{ $hotel->ciudad }}, {{ $hotel->pais }}</span>
                             </div>
                         </div>
                         
@@ -39,7 +83,7 @@
                         
                         
                         <span class="text-2xl">
-                            A 2.5 km del centro de la ciudad.
+                            A {{ $hotel->distancia }} km del centro de la ciudad.
                         </span>
 
                         <span class="text-2xl text-green-400">
@@ -51,31 +95,17 @@
                 <div class="flex items-center">
                     <span class="font-semibold me-5 w-auto whitespace-nowrap">Servicios Extra:</span>
                     <div class="h-min grid sm:grid-cols-4 lg:grid-cols-5 gap-2 justify-around w-full">
-                        <span class="whitespace-nowrap">
-                            <i class="fa-solid fa-wifi ms-1 fa-xs"></i>
-                            <span class="sm:text-sm">
-                                Wi-Fi gratis
-                            </span>
-                        </span>
-                        <span class="whitespace-nowrap">
-                            <i class="fa-solid fa-bone ms-1"></i>
-                            <span class="sm:text-sm">
-                                Mascotas
-                            </span>
-                        </span>
-                        <span class="whitespace-nowrap">
-                            <i class="fa-solid fa-utensils ms-1"></i>
-                            <span class="sm:text-sm">
-                                Restaurante
-                            </span>
-                        </span>
-                        <span class="whitespace-nowrap">
-                            <i class="fa-solid fa-utensils ms-1"></i>
-                            <span class="sm:text-sm">
-                                Restaurante
-                            </span>
-                        </span>
-                        
+                        @foreach ($serviciosHoteles as $hServicio)
+                            @if ($hServicio->id_hotel == $hotel->id)
+                                
+                                <span class="whitespace-nowrap w-min">
+                                    <i class="fa-solid fa-{{ $hServicio->icono }} ms-1 fa-xs"></i>
+                                    <span class="sm:text-sm">
+                                        {{ $hServicio->nom_servicio }}
+                                    </span>
+                                </span>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 
@@ -85,13 +115,13 @@
                         <div class="">
                             <span class="font-semibold text-2xl mb-1">Descripción</span>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                {{ $hotel->descripcion }}
                             </p>
                         </div>
                         <div class="my-5">
                             <span class="font-semibold">Políticas de Cancelación</span>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                {{ $hotel->politicas }}
                             </p>
                         </div>
                     </div>

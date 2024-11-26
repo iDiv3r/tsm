@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="lg:flex md:grid lg:columns-2 md:columns-1 md:justify-items-center lg:gap-20">
     
 
@@ -26,53 +25,104 @@
 
         <div class="grid grid-cols-1 gap-5"> {{-- Div de cards --}}
 
-            <div class="flex w-auto lg:m-0 bg-white border-2 border-gray-200 rounded-lg shadow-xl "> {{-- Card --}}
+            @foreach ($hoteles as $hotel)
                 
+                <div class="flex w-auto lg:m-0 bg-white border-2 border-gray-200 rounded-lg shadow-xl "> {{-- Card --}}
+                    
 
-                <div class="h-auto lg:w-1/3 sm:w-1/2 place-content-center mx-3">
-                    <img src="https://images.trvl-media.com/lodging/41000000/40600000/40594000/40593961/c2ec8eeb_w.jpg" alt="" class="rounded-lg flex w-min ">
-                </div>
+                    <div class="h-min lg:w-1/3 sm:w-1/2 place-content-center mx-3">
 
-                <div class="flex justify-between w-full ms-5">
+                        {{-- Carousel --}}	
+                        <div id="controls-carousel" class="relative w-full rounded " data-carousel="static">
+                            <!-- Carousel wrapper -->
+                            <div class="relative h-48 overflow-hidden rounded-lg ">
+                                
+                                @php  
+                                    $num_img = 0;
+                                @endphp
 
-                    <div class="grid grid-cols-1 my-3">
-    
-                        <span class="text-xl h-min mb-2">Hotel Golden</span>
-    
-                        <x-static_star_rating ></x-static_star_rating>
-    
-                        <div class="flex align-center">
-                            <div class="bg-gray-300 rounded flex items-center shadow h-min px-2 gap-2 sm:mb-2 mt-4  ">
-                                <span class="fi fi-be fa-sm"></span> 
-                                <span class="my-1">Ciudad: Belgica</span>
+                                @foreach ($imagenes as $imagen)                                    
+                                    @if ($hotel->id == $imagen->hotel_id)
+                                        <?php
+                                            $num_img ++;
+                                        ?>
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                                            <img src={{'storage/'.$imagen->foto}} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded" alt="..." style="aspect-ratio:400/267">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            @if ($num_img > 1)
+                                
+                                <!-- Slider controls -->
+                                <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                        <svg class="w-2 h-2 text-black dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                        </svg>
+                                        <span class="sr-only">Previous</span>
+                                    </span>
+                                </button>
+                                <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                        <svg class="w-2 h-2 text-black dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                        </svg>
+                                        <span class="sr-only">Next</span>
+                                    </span>
+                                </button>
+                            @endif
+                        </div>
+
+                    </div>
+
+                    <div class="flex justify-between w-full ms-5">
+
+                        <div class="grid grid-cols-1 my-3">
+        
+                            <span class="text-xl h-min mb-2">{{ $hotel->nombre }}</span>
+        
+                            <x-static_star_rating >
+
+                            </x-static_star_rating>
+        
+                            <div class="flex align-center">
+                                <div class="bg-gray-300 rounded flex items-center shadow h-min px-2 gap-2 sm:mb-2 mt-4  ">
+                                    <span class="fi fi-{{ $hotel->bandera }} fa-sm"></span> 
+                                    <span class="my-1">Ciudad: {{ $hotel->ciudad }}</span>
+                                </div>
+                            </div>
+                            
+                            <span class="">Distancia al centro: </span>
+                            
+                            <div class="">
+                                {{ $hotel->distancia }} km
+                            </div>  
+                        
+                            
+                        </div>
+                        <div class="border-s px-10 place-content-center ">
+                            <div class="my-3">
+                                <div class="text-center grid grid-cols-1">
+                                    <span>Desde {{ $hotel->precio }}$</span>
+                                    <span class="text-green-400 font-bold mt-2">Disponible</span>
+                                </div>
+                                <button data-modal-target="info-hotel-{{ $hotel->id }}" data-modal-toggle="info-hotel-{{ $hotel->id }}" class="mt-5 block text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-min" type="button">
+                                    Ver más
+                                </button>
                             </div>
                         </div>
                         
-                        <span class="">Distancia al centro: </span>
-                        
-                        <div class="">
-                            2.5 km
-                        </div>
-                    
-                        
                     </div>
-                    <div class="border-s px-10 place-content-center ">
-                        <div class="my-3">
-                            <div class="text-center grid grid-cols-1">
-                                <span>Desde 4500$</span>
-                                <span class="text-green-400 font-bold mt-2">Disponible</span>
-                            </div>
-                            <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="mt-5 block text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-min" type="button">
-                                Ver más
-                            </button>
-                        </div>
-                    </div>
-                    
-                </div>
 
-            </div> {{-- Cierra Card --}}
+                </div> {{-- Cierra Card --}}
+
+            @endforeach
+
         </div> {{--}} Div de cards {{--}}
     </div>
+
+
 
     {{-- cierra container derecha ------------------------------------------------------------------------------------------------------------------------------------- --}}
 
@@ -212,8 +262,11 @@
 
 </div>
 
-@include('modales.infoHotelesUsu')
+    @foreach ($hoteles as $hotel)
+        @include('modales.infoHotelesUsu')
 
+    @endforeach
+        
 @include('modales.filtrosHoteles')
 
 @endsection
