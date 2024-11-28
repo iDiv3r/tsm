@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('precio');
             $table->integer('disponibles');
-            $table->unsignedBigInteger('category_id');
+            $table->string('categoria');
+            // $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('flight_date_id');
 
 
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('flight_date_id')->references('id')->on('flights_dates');
+            // $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('flight_date_id')->references('id')->on('flights_dates')->onDelete('cascade');
             $table->timestamps();
         });
     }

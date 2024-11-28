@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('abreviacion');
+            $table->string('logo');
+            $table->unsignedBigInteger('country_id');
+
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
         });
     }

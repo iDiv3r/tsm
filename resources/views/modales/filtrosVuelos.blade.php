@@ -137,15 +137,15 @@
                             <div class="py-5 border-b border-gray-200">
     
                                 
-                                <x-checkbox-input name="clase" id="turista">
+                                <x-checkbox-input name="clase" id="turista"  status="">
                                     Turista
                                 </x-checkbox-input>
                                 
-                                <x-checkbox-input name="clase" id="ejecutiva">
+                                <x-checkbox-input name="clase" id="ejecutiva"  status="">
                                     Clase Ejecutiva
                                 </x-checkbox-input>
     
-                                <x-checkbox-input name="clase" id="first">
+                                <x-checkbox-input name="clase" id="first"  status="">
                                     Primera Clase
                                 </x-checkbox-input>
     
@@ -161,7 +161,7 @@
                         <div id="accordion-modal-2" class="hidden" aria-labelledby="accordion-flush-modal-heading-2">
                             <div class="py-5 border-b border-gray-200 ">
                                 
-                                <x-checkbox-input name="aerolinea" id="aeromexico">
+                                <x-checkbox-input name="aerolinea" id="aeromexico" status="">
                                     Aeromexico
                                 </x-checkbox-input>
     
@@ -177,12 +177,12 @@
                         <div id="accordion-modal-2" class="hidden" aria-labelledby="accordion-flush-modal-heading-3">
                             <div class="py-5 border-b border-gray-200 ">
                                 
-                                <x-checkbox-input name="directo" id="directo">
+                                <x-checkbox-input name="directo" id="directo" status="">
                                     Directo
                                 </x-checkbox-input>
     
                                 
-                                <x-checkbox-input name="escalas" id="escalas">
+                                <x-checkbox-input name="escalas" id="escalas" status="">
                                     Escalado
                                 </x-checkbox-input>
     

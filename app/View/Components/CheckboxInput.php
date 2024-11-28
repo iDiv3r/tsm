@@ -18,14 +18,17 @@ class CheckboxInput extends Component
 
     public $status;
 
+    public $onclick;
 
-    public function __construct($name, $id, $status)
+    public function __construct($name, $id, $status, $onclick = '')
     {
         $this->name = $name;
 
         $this->id = $id;
 
         $this->status = $status;
+        
+        $this->onclick = $onclick;
         
         // $this->value = $value;
     }

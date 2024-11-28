@@ -22,14 +22,14 @@
     {{-- container tabla --}}
     <div class="container pt-10 ">
 
-        <div class="flex justify-between ">
+        <div class="flex justify-between items-center">
             <div class="mb-5 flex items-center align-middle">
                 <i class="fa-solid fa-hotel fa-2xl"></i>
                 <span class="text-[40px] ms-4">Hoteles</span>
             </div>
             
             <div class="place-items-end">
-                <button data-modal-target="small-modal" data-modal-toggle="small-modal" type="button" class="h-min text-white bg-orange-400 hover:bg-orange-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none">
+                <button data-modal-target="small-modal" data-modal-toggle="small-modal" type="button" class="h-min text-white bg-orange-400 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none">
                     <i class="fa-solid fa-magnifying-glass fa-md me-2"></i>
                     Filtros
                 </button>
@@ -37,8 +37,8 @@
         </div>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-t-4 border-t-orange-500">
-            <table class="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 border-2 " >
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-center rtl:text-right text-gray-500 border-2" >
+                <thead class=" text-gray-700 uppercase bg-gray-50 ">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Nombre

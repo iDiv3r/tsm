@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\CountrySeeder;
 use Database\Seeders\CitySeeder;
 use Database\Seeders\ServiceSeeder;
+use Database\Seeders\AirlineSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,7 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountrySeeder::class,
             CitySeeder::class,
-            ServiceSeeder::class
+            ServiceSeeder::class,
+            AirlineSeeder::class,
         ]);
 
     }

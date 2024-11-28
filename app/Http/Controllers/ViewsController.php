@@ -12,7 +12,7 @@ class ViewsController extends Controller
     public function vuelos (){
         $paises = Country::all();
 
-        return view('vistas.vuelos2',[
+        return view('vistas.userVuelos',[
             'paises'=>$paises
         ]);
     }

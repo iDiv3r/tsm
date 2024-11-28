@@ -16,13 +16,14 @@ return new class extends Migration
             $table->string('codigo');
             $table->time('duracion');
             $table->integer('pasajeros');
+            $table->string('escalas');
             $table->unsignedBigInteger('airline_id');
-            $table->unsignedBigInteger('desntination_id');
+            $table->unsignedBigInteger('destination_id');
             $table->unsignedBigInteger('origin_id');
 
             $table->foreign('airline_id')->references('id')->on('airlines');
-            $table->foreign('desntination_id')->references('id')->on('cities');
-            $table->foreign('origin_id')->references('id')->on('cities');
+            $table->foreign('destination_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('origin_id')->references('id')->on('cities')->onDelete('cascade');
 
 
             $table->timestamps();
