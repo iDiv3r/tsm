@@ -74,7 +74,7 @@ bg-white
                     <span class="w-auto px-1">1 </span>
                 </div>
 
-                <a href="" class="place-self-center ms-4">
+                <a href="{{route('profile.show')}}" class="place-self-center ms-4">
                     <i class="fa-solid fa-user fa-2xl fa-regular hover:text-gray-600"></i>
                 </a>
             </div>
@@ -202,6 +202,16 @@ bg-white
                             <i class="fa-solid fa-hotel fa-xl"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Hoteles Usuario</span>
                         </a>
+                    </li>
+
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <x-dropdown-link href="{{ route('logout') }}"
+                                @click.prevent="$root.submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
                     </li>
                 </ul>
 
