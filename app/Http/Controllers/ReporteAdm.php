@@ -3,19 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReporteAdm extends Controller
 {
     public function vistaReporteAdm(){
-        return view('reportesAdmin');
+        
+
+        $destinos = DB::table('countries')
+            ->select('id', 'nombre')
+            ->get();
+
+        $aerolineas = DB::table('airlines')
+            ->select('id', 'nombre')
+            ->get();
+
+        $array = session()->get('destinos', []);
+        
+        return view('reportesAdmin', compact('destinos','aerolineas'));
     }
+
+
+
     
     public function addDestinoRepo(request $newDest){
+
         $VnewDest=$newDest->validate([
             'destino'=>'required',
         ]);
-        
+
+      ;
         session()->flash('exitodesadd');
+        
+       
+
         
         return to_route('rutaadminReporte');
     }
