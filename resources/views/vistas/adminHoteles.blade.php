@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-t-4 border-t-orange-500">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-t-4 border-t-orange-500 text-sm">
             <table class="w-full text-center rtl:text-right text-gray-500 border-2" >
                 <thead class=" text-gray-700 uppercase bg-gray-50 ">
                     <tr>

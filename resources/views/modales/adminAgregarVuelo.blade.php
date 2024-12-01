@@ -82,7 +82,7 @@
                                     <div class="flex  gap-3">
 
                                         <div>
-                                            <x-checkbox-input name="" id="fc" status="" onclick="toggleInputState('1-clase')">
+                                            <x-checkbox-input name="chk1" id="fc" status="" onclick="toggleInputState('1-clase')">
                                                 Primera Clase   
                                             </x-checkbox-input> 
                                             
@@ -96,7 +96,7 @@
                                         </div>
 
                                         <div>
-                                            <x-checkbox-input name="" id="bc" status="" onclick="toggleInputState('2-clase')">
+                                            <x-checkbox-input name="chk2" id="bc" status="" onclick="toggleInputState('2-clase')">
                                                 Clase Ejecutiva
                                             </x-checkbox-input>
 
@@ -109,7 +109,7 @@
                                         </div>
     
                                         <div>
-                                            <x-checkbox-input name="" id="tc" status="checked disabled" >
+                                            <x-checkbox-input name="chk3" id="tc" status="checked disabled" >
                                                 Clase Turista
                                             </x-checkbox-input>
 
@@ -156,11 +156,25 @@
                                     </select>
                                     <small class="text-red-500"> {{ $errors->first('txtdestino') }} </small>
                                 </div>
-                                <div class="place-content-center ">
+                                <div class="flex gap-5 ">
+                                    <div class="max-w-[8rem]">
+                                        <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Ida:</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </div>
+                                            <input type="time" id="time" name="hora" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required value="{{ old('hora') }}" />
+                                        </div>
+                                    </div>
+                                    <small class="text-red-500"> {{ $errors->first('hora') }} </small>
                                     <x-checkbox-input name="escalas" id="" status="">
                                         Escalas
                                     </x-checkbox-input>
                                 </div>
+                                
+
                             </div>
                         </div>
                         <div class="grid grid-cols-3 gap-4">
@@ -174,15 +188,11 @@
                                             <th scope="col" class="px-6 py-3">
                                                 Fecha de llegada
                                             </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                            </th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="bg-white" id="date-range-picker" date-rangepicker datepicker-orientation="top" datepicker-format="dd/mm/yyyy">
+                                        <tr class="bg-white" id="date-range-picker" date-rangepicker datepicker-orientation="top" >
                                             
                                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                                 <div class="relative">
@@ -208,15 +218,7 @@
                                                 </div>
                                                 <small class="text-red-500"> {{ $errors->first('end') }} </small>
                                             </td>
-                                            <td class="w-4 p-4">
-                                                <div class="flex items-center">
-                                                    <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ">
-                                                    <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                <a href="#" class="font-medium text-blue-600  hover:underline">Edit</a>
-                                            </td>
+                                            
                                         </tr>
                                     </tbody>
                                 </table>

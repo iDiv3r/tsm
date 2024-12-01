@@ -82,7 +82,7 @@
         
                             <span class="text-xl h-min mb-2">{{ $hotel->nombre }}</span>
         
-                            <x-static_star_rating >
+                            <x-static_star_rating rating="{{ $hotel->estrellas }}">
 
                             </x-static_star_rating>
         
@@ -102,12 +102,16 @@
                             
                         </div>
                         <div class="border-s px-10 place-content-center ">
-                            <div class="my-3">
+                            <div class="my-3 grid grid-cols-1">
                                 <div class="text-center grid grid-cols-1">
                                     <span>Desde {{ $hotel->precio }}$</span>
-                                    <span class="text-green-400 font-bold mt-2">Disponible</span>
+                                    @if ($hotel->num_huespedes > 0)
+                                        <span class="text-green-400 font-bold mt-2"> Disponible</span>
+                                    @else
+                                    <span class="text-red-500 font-bold mt-2">No Disponible</span>
+                                    @endif
                                 </div>
-                                <button data-modal-target="info-hotel-{{ $hotel->id }}" data-modal-toggle="info-hotel-{{ $hotel->id }}" class="mt-5 block text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-min" type="button">
+                                <button data-modal-target="info-hotel-{{ $hotel->id }}" data-modal-toggle="info-hotel-{{ $hotel->id }}" class="mt-5 block text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-min self-center" type="button">
                                     Ver más
                                 </button>
                             </div>

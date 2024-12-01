@@ -68,7 +68,9 @@
     
                         <span class="text-xl h-min mb-2">{{ $hotel->nombre }}</span>
     
-                        <x-static_star_rating ></x-static_star_rating>
+                        <x-static_star_rating rating="{{ $hotel->estrellas }}">
+
+                        </x-static_star_rating>
     
                         <div class="flex align-center">
                             <div class="bg-gray-300 rounded flex items-center shadow h-min px-2 gap-2 sm:mb-2 mt-4  ">
@@ -86,9 +88,12 @@
                             A {{ $hotel->distancia }} km del centro de la ciudad.
                         </span>
 
-                        <span class="text-2xl text-green-400">
-                            Disponible
-                        </span>
+                        @if ($hotel->num_huespedes > 0)
+                            <span class="text-green-400 text-2xl"> Disponible</span>
+                        @else
+                            <span class="text-red-500 text-2xl">No Disponible</span>
+                        @endif
+                        
                     </div>                    
                 </div>
 
