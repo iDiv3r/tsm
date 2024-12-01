@@ -96,9 +96,38 @@
  --}}
 
  
+ <select id="select1">
+   <option value="1">Opción 1</option>
+   <option value="2">Opción 2</option>
+   <option value="3">Opción 3</option>
+ </select>
+ 
+ <select id="select2">
+   <option value="A">Opción A</option>
+   <option value="B">Opción B</option>
+   <option value="C">Opción C</option>
+ </select>
+ 
+ <p id="resultado"></p>
+ 
 
+<script>
+   // Obtener todos los select del documento
+const selects = document.querySelectorAll('select');
+// const resultado = document.getElementById('resultado');
+console.log(selects);
 
+// Agregar el evento 'change' a cada select
+selects.forEach(select => {
+  select.addEventListener('change', (event) => {
+    const idDelSelect = event.target.id; // Obtiene el id del select que cambió
+    resultado.textContent = `Cambiaste el select con id: ${idDelSelect}`;
 
+    console.log(idDelSelect);
+  });
+});
+
+</script>
    
 <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 </body>

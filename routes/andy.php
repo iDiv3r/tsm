@@ -15,3 +15,5 @@ Route::get('/administrador/vuelos',[AdminVuelos::class,'vistaVuelos'])->name('ru
 
 Route::post('/administrador/vuelos/agregar',[AdminVuelos::class,'agregar'])->name('rutaAgregarVuelo');
 Route::post('/administrador/vuelos/editar',[AdminVuelos::class,'editar'])->name('rutaEditarVuelo');
+
+Route::post('/administrador/vuelos/eliminar',[AdminVuelos::class,'eliminar'])->name('rutaEliminarVuelo');

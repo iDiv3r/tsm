@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+{{-- @dump($categoriasVuelos) --}}
 
 {{-- @dump($vuelos) --}}
 
@@ -121,7 +121,7 @@
                     <a href="#" data-modal-target="editar-vuelo-{{ $vuelo->id }}" data-modal-toggle="editar-vuelo-{{ $vuelo->id }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-sky-500">Editar</a>
                 </li>
                 <li>
-                    <a href="#" data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-500">
+                    <a href="#" data-modal-target="eliminar-vuelo-{{ $vuelo->id }}" data-modal-toggle="eliminar-vuelo-{{ $vuelo->id }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-500">
                         Eliminar 
                     </a>
                     {{--<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-500">Eliminar</a>--}}
@@ -131,6 +131,8 @@
         </div>
 
         @include ('modales.adminEditarVuelo')
+
+        @include ('modales.adminEliminarVuelo')
 
     @endforeach
     
@@ -149,6 +151,5 @@
 
 @include ('modales.adminAgregarVuelo')
 
-@include ('modales.adminEliminarVuelo')   
 
 @endsection

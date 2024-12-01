@@ -2,6 +2,11 @@
 
 @section('content')
 
+{{-- @dump($vuelos) --}}
+
+{{-- @dump($categoriasVuelos) --}}
+
+
 
 <div class="lg:flex md:grid lg:columns-2 md:columns-1 md:justify-items-center lg:gap-20">
     
@@ -25,67 +30,90 @@
 
         <div class="grid grid-cols-1 gap-5"> {{-- Div de cards --}}
 
-            <div class="flex w-auto lg:m-0 bg-white border-2 border-gray-200 rounded-lg shadow-xl justify-evenly "> {{-- Card --}}
-                
-                <div class="text-2xl font-medium self-center sm:hidden lg:block mx-5 w-1/5 text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Aeromexico.png/1200px-Aeromexico.png" alt="" class="p-1">
-                    {{-- Aeromexico --}}
-                </div>
+            @foreach ($vuelos as $vuelo)
+                    <div class="flex w-auto lg:m-0 bg-white border-2 border-gray-200 rounded-lg shadow-xl justify-evenly "> {{-- Card --}}
+                        
+                        <div class="text-2xl font-medium self-center sm:hidden lg:block mx-5 w-1/5 text-center">
+                            {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Aeromexico.png/1200px-Aeromexico.png" alt="" class="p-1"> --}}
 
-                <div class="grid grid-cols-1 items-center text-bottom mx-5">
+                            {{ $vuelo->aerolinea }}
 
-                    <div class="lg:hidden sm:block align-baseline text-center items-center text-2xl font-medium">
-                        {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Aeromexico.png/1200px-Aeromexico.png" alt="" class="p-1 "> --}}
-                        Aeromexico
-                    </div>
-
-                    <div class="bg-gray-300 rounded flex items-center w-min shadow h-min px-3 sm:mb-2">
-                        <div class="justify-items-center grid columns-1">
-                            <span class="fi fi-mx fa-2xl  mt-3"></span> 
-                            <span class="my-1">Mex</span>
+                            {{-- Aeromexico --}}
                         </div>
-                        <i class="fa-solid fa-arrow-right position-self-center mx-3 fa-xl hover:text-white"></i>
-    
-                        <div class="justify-items-center grid columns-1">
-                            <span class="fi fi-jp fa-2xl mt-3"></span> 
-                            <span class="my-1">Jap</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="w-2/5 flex items-center justify-around">
-                    
-                    <div class="h-min text-center grid columns-1">
-                        <div class="inline-block">
-                            <i class="fa-solid fa-plane"></i>
-                            <span class="font-semibold">IDA</span>
-                        </div>
-                        <span>25 de Sep</span>
-                        <span>6:00 hrs</span>
-                    </div>
+                        <div class="grid grid-cols-1 items-center text-bottom mx-5">
 
-                    <div class="h-min text-center grid columns-1">
-                        <div class="inline-block">
-                            <i class="fa-solid fa-plane fa-rotate-180"></i>
-                            <span class="font-semibold">REGRESO</span>
-                        </div>
-                        <span>25 de Sep</span>
-                        <span>6:00 hrs</span>
-                    </div>
-                    
-                </div>
-                
-                <div class="border-l-2 h-100 w-1/5 p-4">
-                    <div class="text-center mt-3 grid columns-1 h-min self-center">
-                        <span class="text-2xl text-green-400 font-semibold self-center">$25,0000</span>
-                        <span>Clase Turista</span>
-                        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="mt-5 block text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
-                            Ver más
-                        </button>
-                    </div>
-                </div>
+                            <div class="lg:hidden sm:block align-baseline text-center items-center text-2xl font-medium">
+                                {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Aeromexico.png/1200px-Aeromexico.png" alt="" class="p-1 "> --}}
+                                {{ $vuelo->aerolinea }}
+                            </div>
 
-            </div> {{-- Cierra Card --}}
+                            <div class="bg-gray-300 rounded flex items-center w-min shadow h-min px-3 sm:mb-2">
+                                <div class="justify-items-center grid columns-1">
+                                    <span class="fi fi-{{ $vuelo->banderaorigen }} fa-2xl  mt-3"></span> 
+                                    <span class="mt-1 text-xs font-bold">{{ $vuelo->abvorigen }}</span>
+                                    <span class="mb-1 text-xs">{{ $vuelo->abvciudadorigen }}</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right position-self-center mx-3 fa-xl hover:text-white"></i>
+
+                                <div class="justify-items-center grid columns-1">
+                                    <span class="fi fi-{{ $vuelo->banderadestino }} fa-2xl mt-3"></span> 
+                                    <span class="mt-1 text-xs font-bold">{{ $vuelo->abvdestino }}</span>
+                                    <span class="mb-1 text-xs">{{ $vuelo->abvciudaddestino }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-2/5 flex items-center justify-around">
+                            
+                            <div class="h-min text-center grid columns-1">
+                                <div class="inline-block">
+                                    <i class="fa-solid fa-plane"></i>
+                                    <span class="font-semibold">IDA</span>
+                                </div>
+                                <span>{{ $vuelo->fecha_salida }}</span>
+                                <span>{{ $vuelo->hora_salida }}</span>
+                                {{-- <span>25 de Sep</span> --}}
+                            </div>
+                            
+                            @if($vuelo->fecha_regreso != $vuelo->fecha_salida)
+                                
+                                <div class="h-min text-center grid columns-1">
+                                    <div class="inline-block">
+                                        <i class="fa-solid fa-plane fa-rotate-180"></i>
+                                        <span class="font-semibold">REGRESO</span>
+                                    </div>
+                                    <span>{{ $vuelo->fecha_regreso }}</span>
+                                    {{-- <span>25 de Sep</span>
+                                    <span>6:00 hrs</span> --}}
+                                </div>
+
+                            @endif
+                            
+                        </div>
+                        
+                        <div class="border-l-2 h-100 w-1/5 p-4">
+                            <div class="text-center mt-3 grid columns-1 h-min self-center">
+                                <span class="text-2xl text-green-400 font-semibold self-center">
+                                    @foreach ($categoriasVuelos as $cv)
+                                        @if ($cv->flight_date_id == $vuelo->id && $cv->categoria == 'Clase Turista')
+                                            ${{$cv->precio}}
+                                        @endif
+                                    @endforeach 
+                                </span>
+                                <span>Clase Turista</span>
+                                <button data-modal-target="info-vuelo-{{ $vuelo->id }}" data-modal-toggle="info-vuelo-{{ $vuelo->id }}" class="mt-5 block text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
+                                    Ver más
+                                </button>
+                            </div>
+                        </div>
+
+                    </div> {{-- Cierra Card --}}
+
+                    @include('modales.infoVueloUsu')
+
+            @endforeach
+
     
         </div> {{--}} Div de cards {{--}}
         
@@ -293,6 +321,55 @@
 
 @include('modales.filtrosVuelos')
 
-@include('modales.infoVueloUsu')
+<script>
+
+    function getPrecio(categorias, id, clase){
+
+        let precio = 0;
+        categorias.forEach(categoria => {
+            if(categoria.flight_date_id == id && categoria.categoria == clase){
+                precio = categoria.precio;
+            }
+        });
+        return precio;
+    }
+
+    
+    let categorias = <?php echo json_encode($categoriasVuelos); ?>;
+    
+    const selectsFiltrados = document.querySelectorAll('select[id^="sel-"]'); 
+
+    selectsFiltrados.forEach(select => {
+        select.addEventListener('change', (event) => {
+            const idDelSelect = event.target.id; 
+
+            let resultado = document.getElementById(idDelSelect+'-precio');
+
+            let id = idDelSelect.replace(/\D/g, "")
+
+            let precio = 0;
+
+            switch (event.target.value) {
+                case "Clase Turista":
+                    precio = getPrecio(categorias, id, 'Clase Turista');
+                    resultado.textContent = "$" + precio;
+                    break;
+
+                case "Clase Ejecutiva":
+                    precio = getPrecio(categorias, id, 'Clase Ejecutiva');
+                    resultado.textContent =  "$" + precio;
+                    break;
+
+                case "Primera Clase":
+                    precio = getPrecio(categorias, id, 'Primera Clase');
+                    resultado.textContent = "$" + precio;
+                    break;
+            }
+            
+        });
+    });
+
+
+</script>
 
 @endsection

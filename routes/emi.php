@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\UserHoteles;
+use App\Http\Controllers\UserVuelos;
 use App\Models\User;
 
 Route::view('/prueba','prueba');
@@ -19,7 +20,7 @@ Route::view('/administrador/destinos','vistas.destinosADM');
 
 
 
-Route::get('/v2',[ViewsController::class,'vuelos'])->name('rutaVuelosUsuarios');
+Route::get('/v2',[UserVuelos::class,'index'])->name('rutaVuelosUsuarios');
 
 
 Route::get('/c',[ViewsController::class,'carrito'])->name('rutaCarrito');
