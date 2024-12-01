@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DestinoAdm;
 use App\Http\Controllers\ReporteAdm;
+use App\Http\Controllers\ReportAController;
 
 Route::view('/prueba','prueba');
 
@@ -24,3 +25,5 @@ route::Post('/adminrepoaclieadd',[ReporteAdm::class,'addClienRepo'])->name('ruta
 route::Post('/adminrepodestdel',[ReporteAdm::class,'delDestinoRepo'])->name('rutaadminrepodestdel');
 route::Post('/adminrepoaerodel',[ReporteAdm::class,'delAeroRepo'])->name('rutaadminrepoaerodel');
 route::Post('/adminrepoacliedel',[ReporteAdm::class,'delClienRepo'])->name('rutaadminrepoacliedel');
+
+route::resource('report', ReportAController::class);

@@ -51,11 +51,10 @@
                     @csrf 
                     <label for="destino" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino:</label>
                     <select id="destino" name="destino" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option value="">Selecciona un destino</option>
-                        <option value="1">México</option>
-                        <option value="1">España</option>
-                        <option value="1">E.U</option>
-                        <option value="1">Francia</option>
+                        <option value="">Selecciona una aerolínea</option>
+                        @foreach($destinos as $destino)
+                            <option value="{{$destino->id}}">{{$destino->nombre}}</option>
+                        @endforeach
                     </select>
                     <small class="text-red-900">{{$errors->first('destino')}}</small>
                 </div>
@@ -73,10 +72,9 @@
                     <label for="aerolinea" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aerolínea:</label>
                     <select id="aerolinea" name="aerolinea" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option value="">Selecciona una aerolínea</option>
-                        <option value="1">Aerolina Mex</option>
-                        <option value="1">Free</option>
-                        <option value="1">Aerolinea space </option>
-                        <option value="1">Francia</option>
+                        @foreach($aerolineas as $aeroline)
+                            <option value="{{$aeroline->id}}">{{$aeroline->nombre}}</option>
+                        @endforeach
                     </select>
                     <small class="text-red-900">{{$errors->first('aerolinea')}}</small>
                 </div>
