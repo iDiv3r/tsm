@@ -256,7 +256,7 @@
                             
                                 <x-checkbox-input 
                                 name="checkbox-{{ $servicio->id }}" 
-                                id="checkbox-{{ $hotel->id }}-{{ $servicio->id }}" 
+                                id="checkbox-{{ $servicio->id }}" 
                                 status=""
                                 >
                                     <i class="fa-solid fa-{{ $servicio->icono }} ms-1 fa-xs"></i>

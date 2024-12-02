@@ -40,7 +40,7 @@
                             
                             <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Precio</h6>
                             
-                            <select id="small" class="block w-min p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " name="selPrecio">
+                            <select id="small2" class="block w-min p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " name="selPrecio">
                             <option value="1">Menor a</option>
                             <option value="2" selected>Mayor a</option>
                             </select>
@@ -69,7 +69,7 @@
                         <div class="flex justify-between mb-5">
                             <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Distancia al Centro</h6>
                             
-                            <select id="small" class="block w-min p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " name="selDistancia">
+                            <select id="small2" class="block w-min p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " name="selDistancia">
                             <option value="1">Menor a</option>
                             <option value="2" selected>Mayor a</option>
                             </select>
@@ -121,7 +121,7 @@
                             
                                 <x-checkbox-input 
                                 name="checkbox-{{ $servicio->id }}" 
-                                id="checkbox-{{ $hotel->id }}-{{ $servicio->id }}" 
+                                id="checkbox-{{ $servicio->id }}" 
                                 status=""
                                 >
                                     <i class="fa-solid fa-{{ $servicio->icono }} ms-1 fa-xs"></i>
