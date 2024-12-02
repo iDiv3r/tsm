@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Flight;
+use App\Events\FlightModificationEvent;
+
+
 
 class AdminVuelos extends Controller
 {
@@ -253,8 +256,12 @@ class AdminVuelos extends Controller
             DB::table('flights_dates')
                 ->where('id', $idVueloFecha->id)
                 ->update([
-                    'hora_salida' => $request->input('hora-' . $idVueloFecha->id),
+                    'hora_salida'=>$request->input('hora-'.$idVueloFecha->id),
+                    'estado'=>($request->input('check-estado-'.$idVueloFecha->id) == 'on')
+                    ?'cancelado'
+                    :'activo',
                 ]);
+                event(new FlightModificationEvent($idVueloFecha->id));
 
             DB::table('categories_flights')
                 ->where('flight_date_id', $idVueloFecha->id)

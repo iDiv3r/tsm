@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaUser')
 
 @section('content')
 
@@ -6,7 +6,25 @@
 
 {{-- @dump($categoriasVuelos) --}}
 
+@session('successAdd')
+        <script>
+            Swal.fire({
+                title: "¡Listo!",
+                text: "¡{{$value}}!",
+                icon: "success"
+            });
+        </script> 
+@endsession
 
+@session('error')
+        <script>
+            Swal.fire({
+                title: "¡Error!",
+                text: "¡{{$value}}!",
+                icon: "error"
+            });
+        </script>
+@endsession
 
 <div class="lg:flex md:grid lg:columns-2 md:columns-1 md:justify-items-center lg:gap-20">
     
@@ -340,7 +358,7 @@
     
     let categorias = <?php echo json_encode($categoriasVuelos); ?>;
     
-    const selectsFiltrados = document.querySelectorAll('select[id^="sel-"]'); 
+    const selectsFiltrados = document.querySelectorAll('select[id^="select-class-"]'); 
 
     selectsFiltrados.forEach(select => {
         select.addEventListener('change', (event) => {

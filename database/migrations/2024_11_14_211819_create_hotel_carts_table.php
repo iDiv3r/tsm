@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('hotel_carts', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('num_noches');
+            $table->tinyInteger('num_habitaciones');
             $table->date('checkin');
             $table->date('checkout');
             $table->unsignedBigInteger('user_id');

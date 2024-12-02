@@ -8,27 +8,26 @@ use Illuminate\Support\Facades\DB;
 class SuperAdminController extends Controller
 {
     public function vistaSuperAdmin(){
-        return view('vistas.superAdmin');
+        $usuarios = DB::table('users')->get();
+        return view('vistas.superAdmin', compact('usuarios'));
     }
 
     public function agregarUsuario(Request $request){
         $request->validate([
             'txtNombre' => 'required|string|max:150',
-            'txtApellidos' => 'required|string|max:150',
             'txtCorreo' => 'required',
-            'intTelefono' => 'required|numeric|min:0',
             'selectRol' => 'required',
             'txtPassword' => 'required|string|max:150',
             'txtConfirm' => 'required|string|max:150'
         ]);
 
+        $password = $request->input('txtPassword');
+
         DB::table('users')->insert([
             'name' => $request->input('txtNombre'),
-            'apellidos' => $request->input('txtApellidos'),
             'email' => $request->input('txtCorreo'),
-            'telefono' => $request->input('intTelefono'),
             'rol' => $request->input('selectRol'),
-            'password' => $request->input('txtPassword')
+            'password' => bcrypt($password),
         ]);
 
         $nombre = $request->input('txtNombre');
@@ -39,12 +38,14 @@ class SuperAdminController extends Controller
     public function editarUsuario(Request $request){
         $request->validate([
             'txtNombre' => 'required|string|max:150',
-            'txtApellidos' => 'required|string|max:150',
             'txtCorreo' => 'required',
-            'intTelefono' => 'required|numeric|min:0',
             'selectRol' => 'required',
-            'txtPassword' => 'required|string|max:150',
-            'txtConfirm' => 'required|string|max:150'
+        ]);
+
+        DB::table('users')->where('id', $request->input('id'))->update([
+            'name' => $request->input('txtNombre'),
+            'email' => $request->input('txtCorreo'),
+            'rol' => $request->input('selectRol')
         ]);
 
         $nombre = $request->input('txtNombre');
@@ -53,6 +54,7 @@ class SuperAdminController extends Controller
     }
 
     public function eliminarUsuario(Request $request){
+        DB::table('users')->where('id', $request->input('id'))->delete();
         $nombre = $request->input('txtNombre');
         session()->flash('successDelete', 'El usuario: '.$nombre.' ha sido eliminado correctamente');
         return to_route('superAdmin');

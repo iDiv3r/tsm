@@ -3,7 +3,12 @@
 @section('content')
 
 <link href="{{ asset('/css/adminDestinos.css') }}" rel="stylesheet">
+<!-- Exportacion en Ecxel -->
+<script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
 
+<!-- Exportacion en pdf -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
 <div class="grid grid-cols-3 gap-4 gap-4 h-auto min-h-full ">
 
@@ -17,177 +22,643 @@
 
         <div class="relative  overflow-x-auto shadow-md sm:rounded-lg border-t-4 border-t-orange-500">
             <div class="mb-5 mt-3 flex items-center align-middle text-center gap-5  justify-self-center">
-                <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"></i>Filtros</h5>
+                <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"></i>Formato Excel</h5>
             </div>
             
             <div id="date-range-picker2" date-rangepicker class=" ms-4 grid grid-cols-4 gap-4 mb-8" datepicker-format="dd-mm-yyyy">
-                <div>
-                    <span class="mb-2">Fecha de Inicio:</span>
-                    <div class="relative max-w-sm  mb-4">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                            </svg>
-                        </div>
-                        <input id="datepicker-range-start2" name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="Inicio" >
+                <div>  
+                    <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportButton">
+                            Generar Reporte Vuelos
+                        </button>
+                    </div>
+                </div>
+
+                <div>  
+                    <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportButtonD">
+                            Generar Reporte Hoteles
+                        </button>
+                    </div>
+                </div>
+
+                <div>  
+                     <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportButtonCV">
+                            Generar Reporte Clientes Vuelos
+                        </button>
+                    </div>
+                </div>
+
+                <div> 
+                     <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportButtonCH">
+                            Generar Reporte Clientes Hoteles
+                        </button>
                     </div>
                 </div>
                 
-                <div>
-                    <span class="mb-2">Fecha Final:</span>
-                    <div class="relative max-w-sm mb-4 ">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                            </svg>
-                        </div>
-                        <input id="datepicker-range-end2" name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Fin" >
+            </div>
+
+            <!-- Botones PDF -->
+
+            <div class="mb-5 mt-3 flex items-center align-middle text-center gap-5  justify-self-center">
+                <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"></i>Formato PDF</h5>
+            </div>
+
+            <div id="date-range-picker2" date-rangepicker class=" ms-4 grid grid-cols-4 gap-4 mb-8" datepicker-format="dd-mm-yyyy">
+                <div>  
+                    <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportPDFButtonV">
+                            Generar Reporte Vuelos
+                        </button>
                     </div>
                 </div>
-                
-                <!-- input destino -->
-                <div class="col-start-1 col-end-2">
-                    <form action="/adminrepodestadd" method="POST">
-                    @csrf 
-                    <label for="destino" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino:</label>
-                    <select id="destino" name="destino" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option value="">Selecciona una aerolínea</option>
-                        @foreach($destinos as $destino)
-                            <option value="{{$destino->id}}">{{$destino->nombre}}</option>
-                        @endforeach
-                    </select>
-                    <small class="text-red-900">{{$errors->first('destino')}}</small>
-                </div>
-                <div class=" flex items-stretch ">
-                    <button type="submit" class= " text-white  self-end bg-green-600 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Guardar 
-                    </button>
-                    </form>
+
+                <div>  
+                    <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportPDFButtonH">
+                            Generar Reporte Hoteles
+                        </button>
+                    </div>
                 </div>
 
-                <!-- input aerolinea -->
-                <div class="col-start-3 col-end-4">
-                    <form action="/adminrepoaeroadd" method="POST">
-                    @csrf 
-                    <label for="aerolinea" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aerolínea:</label>
-                    <select id="aerolinea" name="aerolinea" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option value="">Selecciona una aerolínea</option>
-                        @foreach($aerolineas as $aeroline)
-                            <option value="{{$aeroline->id}}">{{$aeroline->nombre}}</option>
-                        @endforeach
-                    </select>
-                    <small class="text-red-900">{{$errors->first('aerolinea')}}</small>
-                </div>
-                <div class=" flex items-stretch ">
-                    <button type="submit" class= " text-white  self-end bg-green-600 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Guardar
-                    </button>
-                    </form>
+                <div>  
+                     <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportPDFButtonCV">
+                            Generar Reporte Clientes Vuelos
+                        </button>
+                    </div>
                 </div>
 
-                <!-- input clientes -->
-                <div class="col-start-1 col-end-2 ">
-                    <form action="/adminrepoaclieadd" method="POST">
-                    @csrf 
-                    <label for="cliente" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino:</label>
-                    <input type="text" id="cliente" name="cliente" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <small class="text-red-900">{{$errors->first('cliente')}}</small>
-                </div>
-                <div class=" flex items-stretch ">
-                    <button type="submit" class= " text-white  self-end bg-green-600 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Guardar 
-                    </button>
-                    </form>
+                <div>  
+                     <div class= " mt-5 mb-5 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button id="exportPDFButtonCH">
+                            Generar Reporte Clientes Hoteles
+                        </button>
+                    </div>
                 </div>
                 
             </div>
             
         </div>
-            
-        
-
     </div>
 
-   <!-- Contenedor Destinos -->
-    <div class="container col-start-1 col-end-2">
-        <div  class=" sm:rounded-lg border-t-4 border-t-orange-500">
-            <div class="mb-1 mt-1 flex items-center align-middle text-center gap-5  justify-self-center">
-                <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"></i>Destinos</h5>
-            </div>    
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-2 " >
-                <tbody>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            España
-                        </th>
-                        <td class="">
-                            <button  type="button" data-modal-target="deleteDestinoRepo" data-modal-toggle="deleteDestinoRepo" class=" md:mb-0 text-black  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                            <i class="fa-solid fa-trash" style="color: #e42121;"></i>
-                            </button>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-    <!-- Contenedor Aerolineas -->
-    <div class="container col-start-2 col-end-3 ">
-        <div  class=" sm:rounded-lg border-t-4 border-t-orange-500">
-            <div class="mb-1 mt-1 flex items-center align-middle text-center gap-5  justify-self-center">
-                <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"></i>Aerolíneas</h5>
-            </div>    
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-2 " >
-                <tbody>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            AeroMexico
-                        </th>
-                        <td class="">
-                            <button  type="button" data-modal-target="deleteAeroRepo" data-modal-toggle="deleteAeroRepo" class=" md:mb-0 text-black  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                            <i class="fa-solid fa-trash" style="color: #e42121;"></i>
-                            </button>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-    <!-- Contenedor Cliente -->
-    <div class="container col-start-3 col-end-4 ">
-        <div  class=" sm:rounded-lg border-t-4 border-t-orange-500">
-            <div class="mb-1 mt-1 flex items-center align-middle text-center gap-5  justify-self-center">
-                <h5 class="mb-1 w-60 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white"></i>Clientes</h5>
-            </div>    
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-2 " >
-                <tbody>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Alfredo Hernandez Cuevas
-                        </th>
-                        <td class="">
-                            <button  type="button" data-modal-target="deleteClienRepo" data-modal-toggle="deleteClienRepo" class=" md:mb-0 text-black  font-medium rounded-lg text-sm  text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                            <i class="fa-solid fa-trash" style="color: #e42121;"></i>
-                            </button>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-    <!-- Contenedor Boton -->
-    <div class= " mt-9 mb-20 text-white  self-end bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <button>
-            Generar Reporte
-        </button>
-    </div>
-
+   
     
+    <!-- Aerolioneas en Excel-->
+    <script>
+        // Exportarcion de datos a Excel
+        function exportToExcelA(data, filenameA = 'Vuelos.xlsx') {
+            // Creacion un nuevo libro
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet("Vuelos");
+
+            // Estilo para las celdas 
+            const headerStyle = {
+                font: { bold: true, color: { argb: "FFFFFF" }, size: 12 },
+                fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: "FF8A4C" } },
+                alignment: { horizontal: 'center', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } }, 
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+            };
+
+            const cellStyle = {
+                alignment: { horizontal: 'left', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } }, 
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+            };
+
+            // Agregar encabezados
+            const columns = Object.keys(data[0]).map(key => ({ header: key, key: key }));
+            worksheet.columns = columns;
+
+            // Aplicar estilos a las celdas de encabezado
+            worksheet.getRow(1).eachCell((cell) => {
+                cell.style = headerStyle;
+            });
+
+            // Agregar los datos a la hoja
+            data.forEach((item) => {
+                worksheet.addRow(item);
+            });
+
+            // Aplicar estilo a las celdas de datos
+            worksheet.eachRow((row, rowIndex) => {
+                if (rowIndex > 1) { // No aplicar estilo al encabezado
+                    row.eachCell((cell) => {
+                        cell.style = cellStyle;
+                    });
+                }
+            });
+
+            // Tamaño automático de las columnas
+            worksheet.columns.forEach(column => {
+                const maxLength = column.values.reduce((max, value) => Math.max(max, String(value).length), 0);
+                column.width = maxLength + 2; // Añadir espacio extra
+            });
+
+            // Descargar el archivo Excel
+            workbook.xlsx.writeBuffer().then((buffer) => {
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filenameA;
+                link.click();
+            });
+        }
+
+        // Funcion al dar click en el boton
+        document.getElementById('exportButton').addEventListener('click', async () => {
+            try {
+                // Soliciar datos
+                const response = await fetch('/exportAerolineas');
+                
+                // Verifica si la solicitud fue exitosa
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                // Procesa la respuesta como JSON
+                const data = await response.json();
+
+                // Colocar los datos en el Excel
+                exportToExcelA(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
+    <!-- Aerolioneas en PDF-->
+    <script>
+        async function exportToPDFV(data, filename = 'Vuelos.pdf') {
+        const { jsPDF } = window.jspdf;
+
+        // Crear el archivo
+        const doc = new jsPDF();
+
+        // Definicion de encabezados y datos de las tablas
+        const columns = Object.keys(data[0]);
+        const rows = data.map(item => columns.map(key => item[key]));
+
+        // Agregar un título
+        doc.setFontSize(16);
+        doc.text("Reporte de Vuelos", 14, 20);
+
+        // Agregar la tabla 
+        doc.autoTable({
+            head: [columns], 
+            body: rows,      
+            startY: 30,      
+            styles: {
+                fontSize: 10,
+                cellPadding: 2,
+                halign: 'center', 
+            },
+            headStyles: {
+                fillColor: [255, 138, 76], 
+                textColor: [255, 255, 255],
+                fontStyle: 'bold',
+            },
+        });
+
+        // Descargar el PDF
+        doc.save(filename);
+    }
+
+    // Funcion al dar click en el boton
+    document.getElementById('exportPDFButtonV').addEventListener('click', async () => {
+        try {
+            // Solicitar los datos
+            const response = await fetch('/exportAerolineas');
+            
+            // Verificacion de solicitud
+            if (!response.ok) {
+                throw new Error('Error al obtener los datos del servidor');
+            }
+
+            // Procesa la respuesta como JSON
+            const data = await response.json();
+
+            // Colocar los datos en la tabla de PDF
+            exportToPDFV(data);
+        } catch (error) {
+            console.error('Error al exportar los datos:', error);
+            alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+        }
+    });
+    </script>
+
+
+
+
+    <!-- Hoteles en Excel -->
+    <script>
+
+         function exportToExcelD(data, filenameA = 'Hoteles.xlsx') {
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet("Hoteles");
+
+            const headerStyle = {
+                font: { bold: true, color: { argb: "FFFFFF" }, size: 12 },
+                fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: "FF8A4C" } },
+                alignment: { horizontal: 'center', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } },
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+            };
+
+            const cellStyle = {
+                alignment: { horizontal: 'left', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } },
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+            };
+
+            const columns = Object.keys(data[0]).map(key => ({ header: key, key: key }));
+            worksheet.columns = columns;
+
+            worksheet.getRow(1).eachCell((cell) => {
+                cell.style = headerStyle;
+            });
+
+            data.forEach((item) => {
+                worksheet.addRow(item);
+            });
+
+            worksheet.eachRow((row, rowIndex) => {
+                if (rowIndex > 1) { 
+                    row.eachCell((cell) => {
+                        cell.style = cellStyle;
+                    });
+                }
+            });
+
+            worksheet.columns.forEach(column => {
+                const maxLength = column.values.reduce((max, value) => Math.max(max, String(value).length), 0);
+                column.width = maxLength + 2; 
+            });
+
+            workbook.xlsx.writeBuffer().then((buffer) => {
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filenameA;
+                link.click();
+            });
+        }
+
+
+        document.getElementById('exportButtonD').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/exportarDestinos');
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                const data = await response.json();
+
+                exportToExcelD(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
+    <!-- Hoteles en PDF -->
+    <script>
+            async function exportToPDFH(data, filename = 'Hoteles.pdf') {
+            const { jsPDF } = window.jspdf;
+
+            const doc = new jsPDF();
+
+            const columns = Object.keys(data[0]);
+            const rows = data.map(item => columns.map(key => item[key]));
+
+            doc.setFontSize(16);
+            doc.text("Reporte de Hoteles", 14, 20);
+
+            doc.autoTable({
+                head: [columns], 
+                body: rows,   
+                startY: 30,   
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 2,
+                    halign: 'center', 
+                },
+                headStyles: {
+                    fillColor: [255, 138, 76], 
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold',
+                },
+            });
+
+            doc.save(filename);
+        }
+
+        document.getElementById('exportPDFButtonH').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/exportarDestinos');
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                const data = await response.json();
+
+                exportToPDFH(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
+
+
+
+    <!-- clientes vuelos en Excel-->
+    <script>
+         function exportToExcelCV(data, filenameA = 'clientesVuelos.xlsx') {
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet("ClientesVuelos");
+
+            const headerStyle = {
+                font: { bold: true, color: { argb: "FFFFFF" }, size: 12 },
+                fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: "FF8A4C" } },
+                alignment: { horizontal: 'center', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } }, 
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+                
+            };
+
+            const cellStyle = {
+                alignment: { horizontal: 'left', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } }, 
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+            };
+
+            const columns = Object.keys(data[0]).map(key => ({ header: key, key: key }));
+            worksheet.columns = columns;
+
+            worksheet.getRow(1).eachCell((cell) => {
+                cell.style = headerStyle;
+            });
+
+            data.forEach((item) => {
+                worksheet.addRow(item);
+            });
+
+            worksheet.eachRow((row, rowIndex) => {
+                if (rowIndex > 1) { 
+                    row.eachCell((cell) => {
+                        cell.style = cellStyle;
+                    });
+                }
+            });
+
+            worksheet.columns.forEach(column => {
+                const maxLength = column.values.reduce((max, value) => Math.max(max, String(value).length), 0);
+                column.width = maxLength + 2; 
+            });
+
+            workbook.xlsx.writeBuffer().then((buffer) => {
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filenameA;
+                link.click();
+            });
+        }
+
+        document.getElementById('exportButtonCV').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/exportarClientesV');
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                const data = await response.json();
+
+                exportToExcelCV(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
+     <!-- Clientes Vuelos en PDF -->
+     <script>
+            async function exportToPDFCV(data, filename = 'ClientesVuelos.pdf') {
+            const { jsPDF } = window.jspdf;
+
+            const doc = new jsPDF();
+
+            const columns = Object.keys(data[0]);
+            const rows = data.map(item => columns.map(key => item[key]));
+
+            doc.setFontSize(16);
+            doc.text("Reporte de Clientes-Vuelos", 14, 20);
+
+            doc.autoTable({
+                head: [columns],
+                body: rows,      
+                startY: 30,      
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 2,
+                    halign: 'center', 
+                },
+                headStyles: {
+                    fillColor: [255, 138, 76], 
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold',
+                },
+            });
+
+            doc.save(filename);
+        }
+
+        document.getElementById('exportPDFButtonCV').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/exportarClientesV');
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                const data = await response.json();
+
+                exportToPDFCV(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
+
+
+
+     <!-- clientes Hoteles Excel -->
+     <script>
+         function exportToExcelCH(data, filenameH = 'clientesHoteles.xlsx') {
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet("ClientesHoteles");
+
+            const headerStyle = {
+                font: { bold: true, color: { argb: "FFFFFF" }, size: 12 },
+                fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: "FF8A4C" } },
+                alignment: { horizontal: 'center', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } }, 
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+                
+            };
+
+            const cellStyle = {
+                alignment: { horizontal: 'left', vertical: 'middle' },
+                border: {
+                    top: { style: 'thin', color: { argb: '000000' } },  
+                    left: { style: 'thin', color: { argb: '000000' } }, 
+                    bottom: { style: 'thin', color: { argb: '000000' } }, 
+                    right: { style: 'thin', color: { argb: '000000' } }, 
+                },
+            };
+
+            const columns = Object.keys(data[0]).map(key => ({ header: key, key: key }));
+            worksheet.columns = columns;
+
+            worksheet.getRow(1).eachCell((cell) => {
+                cell.style = headerStyle;
+            });
+
+            data.forEach((item) => {
+                worksheet.addRow(item);
+            });
+
+            worksheet.eachRow((row, rowIndex) => {
+                if (rowIndex > 1) { 
+                    row.eachCell((cell) => {
+                        cell.style = cellStyle;
+                    });
+                }
+            });
+
+            worksheet.columns.forEach(column => {
+                const maxLength = column.values.reduce((max, value) => Math.max(max, String(value).length), 0);
+                column.width = maxLength + 2; 
+            });
+
+            workbook.xlsx.writeBuffer().then((buffer) => {
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filenameH;
+                link.click();
+            });
+        }
+
+        document.getElementById('exportButtonCH').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/exportarClientesH');
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                const data = await response.json();
+
+                exportToExcelCH(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
+     <!-- Clientes Hoteles en PDF -->
+     <script>
+            async function exportToPDFCH(data, filename = 'ClientesHoteles.pdf') {
+            const { jsPDF } = window.jspdf;
+
+            const doc = new jsPDF();
+
+            const columns = Object.keys(data[0]);
+            const rows = data.map(item => columns.map(key => item[key]));
+
+            doc.setFontSize(16);
+            doc.text("Reporte de Clientes-Hoteles", 14, 20);
+
+            doc.autoTable({
+                head: [columns], 
+                body: rows,  
+                startY: 30,     
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 2,
+                    halign: 'center', 
+                },
+                headStyles: {
+                    fillColor: [255, 138, 76], 
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold',
+                },
+            });
+
+            doc.save(filename);
+        }
+
+        document.getElementById('exportPDFButtonCH').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/exportarClientesH');
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del servidor');
+                }
+
+                const data = await response.json();
+
+                exportToPDFCH(data);
+            } catch (error) {
+                console.error('Error al exportar los datos:', error);
+                alert('Hubo un problema al exportar los datos. Por favor, intenta de nuevo.');
+            }
+        });
+    </script>
+
 
 </div>
 
