@@ -28,7 +28,19 @@ class ReportAController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $VnewDest=$request->validate([
+            'aerolinea'=>'required',
+        ]);
+        
+        $addAero = new reportA();
+        $addAero -> aerolinea = $request->input('aerolinea');
+
+        $addAero ->save();
+
+        session()->flash('exitoaeroadd');
+        
+        
+        return redirect()->back();
     }
 
     /**
