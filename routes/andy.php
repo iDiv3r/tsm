@@ -27,9 +27,5 @@ Route::get('/administrador/vuelos/ciudades/{pais_id}', [AdminVuelos::class, 'get
 Route::post('/administrador/vuelos/filtrar',[AdminVuelos::class,'filtroVuelos'])->name('rutaFiltrarVuelo');
 
 
-
-// Obtener Ciudades por país usuarios
-Route::get('/user/vuelos/ciudades/{pais_id}', [UserVuelos::class, 'getCiudades'])->name('rutaGetCiudades');
-
-//Filtrar vuelos
-Route::post('/user/vuelos/filtrar',[UserVuelos::class,'filtroVuelos'])->name('rutaFiltrarVuelo');
+Route::post('/usuario/vuelos/filtrar',[UserVuelos::class,'filtroVuelos'])->name('rutaUserVuelos');
+Route::post('/h2',[UserVuelos::class,'filtroVuelos'])->name('rutaFiltrarVuelo');
