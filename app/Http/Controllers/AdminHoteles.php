@@ -217,7 +217,6 @@ class AdminHoteles extends Controller
     public function filtrarHoteles(Request $request){
 
 
-
         $wheres = [];
 
         array_push($wheres, [

@@ -169,11 +169,13 @@
     
                     <div class="flex justify-center mt-5">
                         <button type="submit" class="text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Filtrar</button>
-        
-                        <button type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Restablecer</button>
+                        
+                    </form>
+                    <form action="{{ route('hotelesAdministrador') }}">
+                        <button type="submit" name="restablecer" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Restablecer</button>
+                    </form>
         
                     </div>
-                </form>
 
             </div>
         </div>

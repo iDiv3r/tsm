@@ -34,4 +34,6 @@ Route::get('/h',[UserHoteles::class,'mostrar'])->name('rutaHotelesUsuarios');
 
 Route::post('/filtrarHotelesAdmin',[AdminHoteles::class,'filtrarHoteles'])->name('rutaFiltrarHotelesAdmin');
 
+Route::post('/filtrarHoteles',[UserHoteles::class,'filtrarHoteles'])->name('rutaFiltrarHotelesUsuario');
+
 // Route::get('/hoteles',[UserHoteles::class,'index'])->name('rutaHotelesUsuarios');
