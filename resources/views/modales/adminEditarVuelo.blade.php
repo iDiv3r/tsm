@@ -38,6 +38,7 @@
                                 value="{{ old('txtduracion' . $vuelo->id ) !== null ? old('txtduracion' . $vuelo->id):$vuelo->duracion }}">
                                 <small class="text-red-500"> {{ $errors->first('txtduracion-'.$vuelo->id) }} </small>
                             </div>
+                            
                             <div>
                                 <div class="grid grid-cols-1 justify-between">
                                     <label for="aerolinea" class="block mb-2 text-sm font-medium text-gray-900 ">Aerolínea</label>
@@ -218,6 +219,13 @@
                                 <x-checkbox-input name="escalas-{{ $vuelo->id }}" id="" status="{{ ($vuelo->escalas == 'si')? 'checked':''}}">
                                     Escalas
                                 </x-checkbox-input>
+                                @foreach ($fechasVuelos as $fechaVuelo)
+                                    @if ($fechaVuelo->flight_id == $vuelo->id)
+                                        <x-checkbox-input name="check-estado-{{ $vuelo->id }}" id="" status="{{ ($fechaVuelo->estado == 'cancelado')? 'checked':''}}" value='cancelado'>
+                                            Cancelar
+                                        </x-checkbox-input>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

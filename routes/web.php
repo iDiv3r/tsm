@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::view('/asd','asd');
 
@@ -19,4 +19,3 @@ Route::middleware([
     // })->name('dashboard');
     Route::get('/home',[HomeController::class, 'index'])->name('dashboard');
 });
-

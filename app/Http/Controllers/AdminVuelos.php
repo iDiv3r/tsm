@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\City;
+use App\Events\FlightModificationEvent;
 
 
 class AdminVuelos extends Controller
@@ -245,7 +246,11 @@ class AdminVuelos extends Controller
                 ->where('id',$idVueloFecha->id)
                 ->update([
                     'hora_salida'=>$request->input('hora-'.$idVueloFecha->id),
+                    'estado'=>($request->input('check-estado-'.$idVueloFecha->id) == 'on')
+                    ?'cancelado'
+                    :'activo',
                 ]);
+                event(new FlightModificationEvent($idVueloFecha->id));
 
             DB::table('categories_flights')
                 ->where('flight_date_id',$idVueloFecha->id)
