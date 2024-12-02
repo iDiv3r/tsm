@@ -45,7 +45,9 @@
             </button>
 
         </div>
-
+        @if (isset($conteovuelos))
+        <h2>Vuelos Filtrados: {{ $conteovuelos }}</h2>
+    @endif
         <div class="grid grid-cols-1 gap-5"> {{-- Div de cards --}}
 
             @foreach ($vuelos as $vuelo)
@@ -140,6 +142,8 @@
 
     {{-- container filtros --}}
 
+    <form action="{{ route('rutaUserVuelos') }}" method="POST">
+        @csrf
     <div class="pt-10 mt-10 lg:pe-10 sm:hidden lg:block">
 
         <div class="max-w-sm p-6 sm:hidden lg:block bg-white rounded-lg shadow-xl">
@@ -165,34 +169,30 @@
                                 </button>
                                 <div id="dropdown-origen-modal" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
                                     <ul class="h-64 py-2 text-sm text-gray-700 overflow-y-auto" aria-labelledby="states-button">
-                                        
-                                        @foreach ($paises as $pais)
-
+                                        @foreach ($getpaises as $pais)
                                         <li>
-                                            <button type="button" class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
+                                            <button type="button"
+                                                data-pais-id-origen="{{ $pais->id }}"
+                                                class="pais-button-origen inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
                                                 <div class="inline-flex items-center">
-                                                    {{-- <input type="text" hidden value="{{ $pais->id }}" name="paisDestino"> --}}
-                                                    <span class="{{"fi fi-" . $pais->bandera }} fa-sm me-2"></span> 
+                                                    <span
+                                                        class="fi fi-{{ $pais->bandera }} fa-sm me-2"></span>
                                                     {{ $pais->nombre }}
                                                 </div>
                                             </button>
                                         </li>
-                                        @endforeach
-                                        
-                                        
+                                    @endforeach
                                     </ul>
                                 </div>
                                 <label for="states" class="sr-only">Ciudad</label>
-                                <select id="states" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-e-lg border-s-gray-100 border-s-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                    <option selected>Ciudad</option>
-                                    <option value="CA">California</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="WH">Washinghton</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="VG">Virginia</option>
-                                    <option value="GE">Georgia</option>
-                                    <option value="MI">Michigan</option>
-                                </select>
+                                <select id="statesorigen"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-e-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            name="ciudadorigen">
+                                            <option selected value="">Selecciona Ciudad</option>
+                                            @foreach ($getciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}">{{ $ciudad->nombre }}</option>
+                                            @endforeach
+                                        </select>
                             </div>
                         </div>
                     </div> 
@@ -207,34 +207,37 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                                     </svg>
                                 </button>
-                                <div id="dropdown-destino-modal" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                                    <ul class="h-64 py-2 text-sm text-gray-700  overflow-y-auto" aria-labelledby="states-button">
-                        
-                                        @foreach ($paises as $pais)
-                                            <li>
-                                                <button type="button" class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
-                                                    <div class="inline-flex items-center">
-                                                        <span class="{{"fi fi-" . $pais->bandera }} fa-sm me-2"></span> 
-                                                        {{ $pais->nombre }}
-                                                    </div>
-                                                </button>
-                                            </li>
-                                        @endforeach
-                                            
-                                    </ul>
+                                <div id="dropdown-destino-modal"
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="h-64 py-2 text-sm text-gray-700  overflow-y-auto"
+                                            aria-labelledby="states-button">
 
-                                </div>
+                                            @foreach ($getpaises as $pais)
+                                                    <li>
+                                                        <button type="button"
+                                                            data-pais-id-destino="{{ $pais->id }}"
+                                                            class="pais-button-destino inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                            <div class="inline-flex items-center">
+                                                                <span
+                                                                    class="fi fi-{{ $pais->bandera }} fa-sm me-2"></span>
+                                                                {{ $pais->nombre }}
+                                                            </div>
+                                                        </button>
+                                                    </li>
+                                                @endforeach
+
+                                        </ul>
+
+                                    </div>
                                 <label for="states" class="sr-only">Ciudad</label>
-                                <select id="states" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-e-lg border-s-gray-100 border-s-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                    <option selected>Ciudad</option>
-                                    <option value="CA">California</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="WH">Washinghton</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="VG">Virginia</option>
-                                    <option value="GE">Georgia</option>
-                                    <option value="MI">Michigan</option>
-                                </select>
+                                <select id="statesdestino"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-e-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            name="ciudaddestino">
+                                            <option selected value="">Selecciona Ciudad</option>
+                                            @foreach ($getciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}">{{ $ciudad->nombre }}</option>
+                                            @endforeach
+                                        </select>
                             </div>
                         </div>
 
@@ -293,11 +296,11 @@
                     </h2>
                     <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
                         <div class="py-5 border-b border-gray-200 ">
-                            
-                            <x-checkbox-input name="aerolinea" id="aeromexico" status="">
-                                Aeromexico
+                            @foreach ($getaerolineas as $aerolinea)
+                            <x-checkbox-input name="aerolinea[]" id="aerolinea" value="{{$aerolinea->id}}"  status="">
+                                {{$aerolinea->nombre}} 
                             </x-checkbox-input>
-
+                        @endforeach
                         </div>
                     </div>
 
@@ -310,12 +313,12 @@
                     <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
                         <div class="py-5 border-b border-gray-200 ">
                             
-                            <x-checkbox-input name="directo" id="directo" status="">
+                            <x-checkbox-input name="directo" value="0"  id="directo" status="1">
                                 Directo
                             </x-checkbox-input>
 
                             
-                            <x-checkbox-input name="escalas" id="escalas" status="">
+                            <x-checkbox-input name="escalado" value="1" id="escalas" status="1">
                                 Escalado
                             </x-checkbox-input>
 
@@ -324,14 +327,14 @@
                 </li>
             </ul>
             <div class="flex justify-center mt-5">
-                <button type="button" class="text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Filtrar</button>
+                <button type="submit" class="text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Filtrar</button>
 
-                <button type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Restablecer</button>
+                <button type="button" onclick="window.location='{{ route("rutaVuelosUsuarios") }}'" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Restablecer</button>
 
             </div>
         </div>
     </div>
-
+    </form>
     {{-- cierra container filtros ------------------------------------------------------------------------------------------------------------------------------------------ --}}
 
 </div>
@@ -386,6 +389,65 @@
             
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.pais-button-origen');
+            const ciudadSelect = document.getElementById('statesorigen');
+            const dropdownOrigen = document.getElementById('dropdown-origen-modal');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const paisId = this.getAttribute('data-pais-id-origen');
+
+                    // Limpiar las opciones del select
+                    ciudadSelect.innerHTML = '<option selected value="">Selecciona Ciudad</option>';
+
+                    // Realizar la solicitud AJAX
+                    fetch(`/administrador/vuelos/ciudades/${paisId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Rellenar el select con las ciudades
+                            data.forEach(ciudad => {
+                                const option = document.createElement('option');
+                                option.value = ciudad.id;
+                                option.textContent = ciudad.nombre;
+                                ciudadSelect.appendChild(option);
+                            });
+                            dropdownOrigen.classList.add('hidden');
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+
+            const buttonsDestino = document.querySelectorAll('.pais-button-destino');
+            const ciudadSelectDestino = document.getElementById('statesdestino');
+            const dropdownDestino = document.getElementById('dropdown-destino-modal');
+
+            buttonsDestino.forEach(button => {
+                button.addEventListener('click', function() {
+                    const paisId = this.getAttribute('data-pais-id-destino');
+
+                    // Limpiar las opciones del select
+                    ciudadSelectDestino.innerHTML =
+                        '<option selected value="">Selecciona Ciudad</option>';
+
+                    // Realizar la solicitud AJAX
+                    fetch(`/administrador/vuelos/ciudades/${paisId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Rellenar el select con las ciudades
+                            data.forEach(ciudad => {
+                                const option = document.createElement('option');
+                                option.value = ciudad.id;
+                                option.textContent = ciudad.nombre;
+                                ciudadSelectDestino.appendChild(option);
+                            });
+                            dropdownDestino.classList.add('hidden');
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+        });
 
 
 </script>
