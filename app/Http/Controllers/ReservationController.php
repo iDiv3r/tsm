@@ -106,13 +106,26 @@ class ReservationController extends Controller
     }
 
     public function eliminarReservaHotel(Request $request){
-        DB::table('hotel_carts')
-            ->where('id', '=', $request->input('reservation_id'))
-            ->delete()
-        ;
+        $hotel = DB::table('hotel_carts')
+            ->where('hotel_carts.id', "=", $request->input('reservation_id'))
+            ->join('hotels','hotels.id','=','hotel_id')
+            ->first();
 
-        session()->flash('success','Reserva del hotel eliminada con éxito');
-        return redirect()->back();
+            $fechaActual = Carbon::now()->toDateString();
+            $fechaSalida = Carbon::parse($hotel->checkin);
+            $diferenciaDias = $fechaSalida->diffInDays($fechaActual, false);
+
+            if ($diferenciaDias < -2){
+                DB::table('hotel_carts')
+                ->where('id', '=', $request->input('reservation_id'))
+                ->delete();
+                session()->flash('success','Reserva del hotel eliminada con éxito');
+                return redirect()->back();
+            }else{
+                session()->flash('error','No es posible cancelar reservas a menos de 48 horas antes del checkin');
+                return redirect()->back();
+            }
+        
     }
 
     public function reservarVuelo(Request $request){
