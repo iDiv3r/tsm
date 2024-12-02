@@ -69,8 +69,18 @@ class UserHoteles extends Controller
 
     public function filtrarHoteles(Request $request){
 
+        // dump($request->post());
 
         $wheres = [];
+
+        if($request->input('busqueda') != null ){
+            array_push($wheres,[
+                'hotels.nombre',
+                '=',
+                $request->input('busqueda')
+            ]);
+        }
+
 
         array_push($wheres, [
             'hotels.precio',

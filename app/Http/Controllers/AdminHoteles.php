@@ -219,6 +219,14 @@ class AdminHoteles extends Controller
 
         $wheres = [];
 
+        if($request->input('busqueda') != null ){
+            array_push($wheres,[
+                'hotels.nombre',
+                '=',
+                $request->input('busqueda')
+            ]);
+        }
+
         array_push($wheres, [
             'hotels.precio',
             ($request->input('selPrecio') == 1)?'<=':'>=',
