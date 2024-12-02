@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\DB;
 class UserHoteles extends Controller
 {
     public function mostrar(Object $filtros = null){
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol != '0'){
+            return redirect()->route('welcome');
+        }
         $paises = Country::all();
 
         $ciudades = DB::table('cities')

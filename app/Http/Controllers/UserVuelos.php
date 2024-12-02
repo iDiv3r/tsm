@@ -14,6 +14,11 @@ class UserVuelos extends Controller
 {
     public function index()
     {
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol != '0'){
+            return redirect()->route('welcome');
+        }
 
         $paises = Country::all();
 

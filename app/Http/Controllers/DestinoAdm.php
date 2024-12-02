@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 class DestinoAdm extends Controller
 {
     public function vistaDestinosAdm(){
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol == '0'){
+            return redirect()->route('welcome');
+        }
         $aerolineas = DB::table('airlines')->get();
         $paises = DB::table('countries')->get();
         $ciudades = DB::table('cities')->get();

@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SuperAdminController extends Controller
 {
     public function vistaSuperAdmin(){
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol == '0' or Auth::user()->rol == '1'){
+            return redirect()->route('welcome');
+        }
         $usuarios = DB::table('users')->get();
         return view('vistas.superAdmin', compact('usuarios'));
     }

@@ -6,11 +6,16 @@ use Illuminate\Http\Request;
 // use App\Models\reportA;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ReporteAdm extends Controller
 {
     public function vistaReporteAdm(){
-                
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol == '0'){
+            return redirect()->route('welcome');
+        }
         return view('reportesAdmin');
     }
 

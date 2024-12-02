@@ -9,8 +9,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Flight;
 use App\Events\FlightModificationEvent;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class AdminVuelos extends Controller
 {
@@ -19,6 +18,11 @@ class AdminVuelos extends Controller
 
     public function vistaVuelos()
     {
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol == '0'){
+            return redirect()->route('welcome');
+        }
         $vuelos = DB::table('flights')
             ->join('cities as origen', 'origen.id', '=', 'flights.origin_id')
             ->join('cities as destino', 'destino.id', '=', 'flights.destination_id')

@@ -10,8 +10,9 @@ use App\Models\Service;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Country;
+// use Illuminate\Container\Attributes\Auth;
 use PhpParser\Node\Expr\Cast\Object_;
-
+use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\select;
 use function PHPUnit\Framework\isEmpty;
 
@@ -20,6 +21,11 @@ class AdminHoteles extends Controller
     # Mostrar Hoteles ====================================================================================================================================
 
     public function vistaHoteles(Object $filtros = null){
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol == '0'){
+            return redirect()->route('welcome');
+        }
 
         $hoteles = $filtros;
         
