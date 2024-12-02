@@ -153,122 +153,172 @@
                 <h5 class="mb-2 w-72 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Filtros</h5>
             </div>
 
-
-            <ul class="space-y-2 font-medium ">
-                <li class="border-t-4 border-orange-500 dark:border-gray-700 pt-4 mt-4 pb-2 ">
+            <form action="{{ route('rutaFiltrarHotelesUsuario') }}" method="POST">
+                    @csrf
                     
-                    <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 ">Origen</h6>
-                
-                    <div class="flex">
-                        <button id="origen-button" data-dropdown-placement="left" data-dropdown-toggle="dropdown-origen-modal" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 " type="button">
-                            Pais
-                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                            </svg>
-                        </button>
-                        <div id="dropdown-origen-modal" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
-                            <ul class="h-64 py-2 text-sm text-gray-700 overflow-y-auto" aria-labelledby="states-button">
+                <ul class="space-y-2 font-medium ">
+
+                    <li class="mb-4">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                </svg>
+                                <span class="sr-only">Buscar</span>
+                            </div>
+                            <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar" name="busqueda" value="">
+                        </div>                    
+                    </li>
+    
+                    <li class=" py-4 mt-4 border-t-2 border-orange-500">
+                        <div class="flex justify-between mb-5">
+                            
+                            <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Precio</h6>
+                            
+                            <select id="small" class="block w-min p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " name="selPrecio">
+                            <option value="1">Menor a</option>
+                            <option value="2" selected>Mayor a</option>
+                            </select>
+                            
+                        </div>
+
+                        @php
+                            $diff = $precios[0]->maxPrecio - $precios[0]->minPrecio;      
+                        @endphp
+                        <div class="relative mb-6">
+                            <label for="labels-range-input" class="sr-only">Labels range</label>
+    
+                            <input id="labels-range-input" type="range" name="precio" value="{{ $precios[0]->minPrecio }}"  min="{{ $precios[0]->minPrecio }}" max="{{ $precios[0]->maxPrecio }}" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">${{ $precios[0]->minPrecio }}</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$ {{ $precios[0]->minPrecio + ($diff*0.25) }} </span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-2/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$ {{ $precios[0]->minPrecio + ($diff*0.5) }} </span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">${{ $precios[0]->maxPrecio }}</span>
+                        </div>
+
+                        
+    
+                    </li>
+    
+                    <li class="border-t-2 border-orange-500 dark:border-gray-700 py-4 mt-4 ">
                                 
+                        <div class="flex justify-between mb-5">
+                            <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Distancia al Centro</h6>
+                            
+                            <select id="small" class="block w-min p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " name="selDistancia">
+                            <option value="1">Menor a</option>
+                            <option value="2" selected>Mayor a</option>
+                            </select>
+                            
+                        </div>
+
+                        <div class="relative mb-6">
+                            <label for="labels-range-input" class="sr-only">Labels range</label>
+
+                            @php
+                                $diff = $precios[0]->maxDistancia - $precios[0]->minDistancia;
+                            @endphp
+    
+                            <input id="labels-range-input" type="range" name="distancia" value="{{ $precios[0]->minDistancia }}" min="{{ $precios[0]->minDistancia}}" max="{{ $precios[0]->maxDistancia }}" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">{{ $precios[0]->minDistancia}} km</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6"> {{ $precios[0]->minDistancia + ($diff*0.25) }} km</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-2/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6"> {{ $precios[0]->minDistancia + ($diff*0.5) }} km</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">{{ $precios[0]->maxDistancia }} km</span>
+                        </div>
+    
+                    </li>
+    
+                    <li class="border-t-2 border-orange-500 dark:border-gray-700 py-4 my-4 ">
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Estrellas</h6>
+                        <div class="flex justify-evenly">
+
+                            @for ($i = 1; $i <= 5; $i++)
+                                    <x-checkbox-input 
+                                    name="estrellas-{{ $i}}" 
+                                    id="checkStar-{{ $i }}" 
+                                    status=""
+                                    >
+                                        <span class="sm:text-sm ms-1">
+                                            {{ $i}}
+                                        </span>
+                                    </x-checkbox-input>
+
+                            @endfor
+                            
+                        </div>
+                    </li>
+    
+                    <li class="border-t-2 border-orange-500 dark:border-gray-700 pt-4 mt-4 ">
+    
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Servicios</h6>
+                        <div class="grid grid-cols-2 flex-col">
+                            
+                            @foreach ($servicios as $servicio)
+                            
+                                <x-checkbox-input 
+                                name="checkbox-{{ $servicio->id }}" 
+                                id="checkbox-{{ $hotel->id }}-{{ $servicio->id }}" 
+                                status=""
+                                >
+                                    <i class="fa-solid fa-{{ $servicio->icono }} ms-1 fa-xs"></i>
+                                    <span class=" ms-1">
+                                        {{ $servicio->nombre }}
+                                    </span>
+                                </x-checkbox-input>
+
+                            @endforeach
+                        </div>
+                    </li>
+
+                    <li class=" dark:border-gray-700 py-4 my-4 border-t-2 border-orange-500 ">
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Localización</h6>
+                        <div class="flex justify-evenly gap-2">
+
+                            <div class="w-50 mx-auto">
+                                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pais</label>
+                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="pais">
+                                <option class="text-sky-500" value="">Seleccionar</option>
                                 @foreach ($paises as $pais)
-
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
-                                        <div class="inline-flex items-center">
-                                            {{-- <input type="text" hidden value="{{ $pais->id }}" name="paisDestino"> --}}
-                                            <span class="{{"fi fi-" . $pais->bandera }} fa-sm me-2"></span> 
-                                            {{ $pais->nombre }}
-                                        </div>
-                                    </button>
-                                </li>
+                                    <option value="{{ $pais->id }}">{{ $pais->nombre }}</option>
                                 @endforeach
-                                
-                                
-                            </ul>
+                                </select>
+                            </div>
+                            <div class="w-50 mx-auto">
+                                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciudad</label>
+                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="ciudad">
+                                <option class="text-sky-500" value="">Seleccionar</option>
+                                @foreach ($ciudades as $ciudad)
+                                    <option value="{{ $ciudad->id }}">{{ $ciudad->ciudad }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            
+                            
                         </div>
-                        <label for="states" class="sr-only">Ciudad</label>
-                        <select id="states" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-e-lg border-s-gray-100 border-s-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                            <option selected>Ciudad</option>
-                            <option value="CA">California</option>
-                            <option value="TX">Texas</option>
-                            <option value="WH">Washinghton</option>
-                            <option value="FL">Florida</option>
-                            <option value="VG">Virginia</option>
-                            <option value="GE">Georgia</option>
-                            <option value="MI">Michigan</option>
-                        </select>
-                    </div>
-                </li>
+                    </li>
+                    <li class="dark:border-gray-700 p-4 my-4 border-t-2 border-orange-500">
+                        <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Disponibilidad</h6>
+                        <div class="flex justify-evenly">
+                            <x-checkbox-input name="disponible" status="" id="dis">
+                                Disponible
+                            </x-checkbox-input>
+                            <x-checkbox-input name="disponiblent" status="" id="nodis">
+                                No Disponible
+                            </x-checkbox-input>
+                        </div>
+                    </li>
 
+                </ul>
+
+                <div class="flex justify-center mt-5">
+                <button type="submit" class="text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Filtrar</button>
+                        
+            </form>
+                <form action="{{ route('rutaHotelesUsuarios') }}">
+                    <button type="submit" name="restablecer" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Restablecer</button>
+                </form>
+    
+                </div>
             
-                <li class="border-t-2 border-orange-500 dark:border-gray-700 pt-4 mt-4 ">
-
-                    <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Estrellas</h6>
-
-                    <div class="flex gap-6">
-
-                        <div class="flex items-center">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">1</label>
-                        </div>
-
-                        <div class="flex items-center">
-                            <input id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">2</label>
-                        </div>
-
-                        <div class="flex items-center">
-                            <input id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">3</label>
-                        </div>
-
-                        <div class="flex items-center">
-                            <input id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">4</label>
-                        </div>
-
-                        <div class="flex items-center">
-                            <input id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">5</label>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="border-t-2 border-orange-500 dark:border-gray-700 py-4 mt-4 ">
-
-                    <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Precio</h6>
-
-                    <div class="relative mb-6">
-                        <label for="labels-range-input" class="sr-only">Labels range</label>
-
-                        <input id="labels-range-input" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                        <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($100)</span>
-                        
-                        <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($1500)</span>
-                    </div>
-
-                </li>
-
-                <li class="border-t-2 border-orange-500 dark:border-gray-700 py-4 mt-4 ">
-
-                    <h6 class="mb-2 w-72 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Distancia al centro</h6>
-
-                    <div class="relative mb-6">
-                        <label for="labels-range-input" class="sr-only">Labels range</label>
-
-                        <input id="labels-range-input" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                        <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($100)</span>
-                        
-                        <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($1500)</span>
-                    </div>
-
-                </li>
-            </ul>
-            <div class="flex justify-center mt-5">
-                <button type="button" class="text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Filtrar</button>
-
-                <button type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 focus:outline-none">Restablecer</button>
-
-            </div>
         </div>
     </div>
 
