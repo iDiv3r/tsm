@@ -78,7 +78,7 @@ class ReporteAdm extends Controller
         ->join('hotels', 'hotel_carts.hotel_id', '=', 'hotels.id')
         ->join('cities', 'hotels.city_id', '=', 'cities.id')
         ->join('countries', 'cities.country_id', '=', 'countries.id')
-        ->select('users.name as Cliente', 'hotels.nombre as Hotel', 'hotel_carts.num_noches as Noches', 'hotels.precio as Precio', DB::raw("CONCAT(countries.nombre, ' - ', cities.nombre) as Destino"), 'hotels.direccion as Direccion')
+        ->select('users.name as Cliente', 'hotels.nombre as Hotel', 'hotel_carts.num_noches as Noches', 'hotels.precio as Precio', DB::raw("CONCAT(countries.nombre, ' - ', cities.nombre) as Ubicacion"), 'hotels.direccion as Direccion')
         ->get();
 
         // Devuelve los datos en formato JSON
