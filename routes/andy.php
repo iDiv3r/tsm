@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminVuelos;
+use App\Http\Controllers\UserVuelos;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,3 +19,17 @@ Route::post('/administrador/vuelos/agregar',[AdminVuelos::class,'agregar'])->nam
 Route::post('/administrador/vuelos/editar',[AdminVuelos::class,'editar'])->name('rutaEditarVuelo');
 
 Route::post('/administrador/vuelos/eliminar',[AdminVuelos::class,'eliminar'])->name('rutaEliminarVuelo');
+
+// Obtener Ciudades por país
+Route::get('/administrador/vuelos/ciudades/{pais_id}', [AdminVuelos::class, 'getCiudades'])->name('rutaGetCiudades');
+
+//Filtrar vuelos
+Route::post('/administrador/vuelos/filtrar',[AdminVuelos::class,'filtroVuelos'])->name('rutaFiltrarVuelo');
+
+
+
+// Obtener Ciudades por país usuarios
+Route::get('/user/vuelos/ciudades/{pais_id}', [UserVuelos::class, 'getCiudades'])->name('rutaGetCiudades');
+
+//Filtrar vuelos
+Route::post('/user/vuelos/filtrar',[UserVuelos::class,'filtroVuelos'])->name('rutaFiltrarVuelo');
