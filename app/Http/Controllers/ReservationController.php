@@ -12,6 +12,11 @@ use Carbon\Carbon;
 class ReservationController extends Controller
 {
     public function mostrar(){
+        if (Auth::user() == null){
+            return redirect()->route('welcome');
+        }else if (Auth::user()->rol != '0'){
+            return redirect()->route('welcome');
+        }
         $paises = Country::all();
         $ciudades = City::all();
 
