@@ -2,10 +2,7 @@
 
 @section('content')
 
-{{-- @dump($hoteles) --}}
-
-
-
+{{-- @dump($precios) --}}
 
 <div class="flex justify-center">
     @session('success')
