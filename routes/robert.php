@@ -26,4 +26,12 @@ route::Post('/adminrepodestdel',[ReporteAdm::class,'delDestinoRepo'])->name('rut
 route::Post('/adminrepoaerodel',[ReporteAdm::class,'delAeroRepo'])->name('rutaadminrepoaerodel');
 route::Post('/adminrepoacliedel',[ReporteAdm::class,'delClienRepo'])->name('rutaadminrepoacliedel');
 
-route::resource('report', ReportAController::class);
+// route::resource('report', ReportAController::class);
+
+Route::get('/exportAerolineas', [ReporteAdm::class, 'exportAerolineas']);
+
+Route::get('/exportarDestinos', [ReporteAdm::class, 'exportDestinos']);
+
+Route::get('/exportarClientesV', [ReporteAdm::class, 'exportClientesV']);
+
+Route::get('/exportarClientesH', [ReporteAdm::class, 'exportClientesH']);
