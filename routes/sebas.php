@@ -20,3 +20,4 @@ Route::post('/eliminar_reserva', [ReservationController::class, 'eliminarReserva
 
 Route::post('/reservando_vuelo', [ReservationController::class, 'reservarVuelo'])->name('reservarVuelo');
 Route::post('/eliminar_reserva_vuelo', [ReservationController::class, 'eliminarReservaVuelo'])->name('eliminarReservaVuelo');
+Route::get('/compra', [ReservationController::class, 'realizarCompra'])->name('realizarCompra');

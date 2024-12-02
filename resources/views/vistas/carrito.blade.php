@@ -10,6 +10,16 @@
                 icon: "success"
             });
         </script> 
+@endsession
+
+@session('error')
+        <script>
+            Swal.fire({
+                title: "¡Error!",
+                text: "¡{{$value}}!",
+                icon: "error"
+            });
+        </script> 
     @endsession
 
 <div class="lg:flex md:grid lg:columns-2 md:columns-1 md:justify-items-center lg:gap-20">
@@ -243,7 +253,7 @@
                 <span class="">${{$total}}</span>
             </div>
 
-            <button type="button" class="w-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Proceder al Pago</button>
+            <a href="{{route("realizarCompra")}}"><button type="button" class="w-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Proceder al Pago</button></a>
 
         </div>
     </div>

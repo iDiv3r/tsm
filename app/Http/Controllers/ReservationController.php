@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\City;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -135,7 +136,7 @@ class ReservationController extends Controller
         ]);
 
         DB::table('categories_flights')
-            ->where('flight_date_id', "=", $request->input('flight_id'))
+            ->where('id', "=", $request->input('flight_id'))
             ->where('categoria', '=', $request->input('select-class-'.$request->input('flight_id')))
             ->decrement('disponibles', intval($request->input('asientos')));
 
@@ -144,17 +145,38 @@ class ReservationController extends Controller
     }
 
     public function eliminarReservaVuelo(Request $request){
-        DB::table('categories_flights')
+        $vuelo = DB::table('flights_dates')
+            ->where('flight_id', "=", $request->input('flight_id'))
+            ->first();
+
+        $fechaActual = Carbon::now()->toDateString();
+        $fechaSalida = Carbon::parse($vuelo->fecha_salida);
+        $diferenciaDias = $fechaSalida->diffInDays($fechaActual, false);
+        // dd($diferenciaDias);
+        
+        if ($diferenciaDias < -2){
+            DB::table('categories_flights')
             ->where('flight_date_id', "=", $request->input('flight_id'))
             ->where('categoria', '=', $request->input('flight-class'))
             ->increment('disponibles', intval($request->input('asientos')));
-        
-        DB::table('tickets')
+            
+            DB::table('tickets')
             ->where('id', '=', $request->input('ticket_id'))
             ->delete();
+        }
+        else{
+            session()->flash('error','No es posible cancelar vuelos a menos de 48 horas antes de la salida');
+            return redirect()->back();
+        }
+        
 
         session()->flash('success','Reserva del vuelo eliminada con éxito');
         return redirect()->back();
     }
 
+    public function realizarCompra(){
+        session()->flash('success', 'Compra realizada');
+        return redirect()->back();
+    }
+    
 }
