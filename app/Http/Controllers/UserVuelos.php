@@ -22,6 +22,12 @@ class UserVuelos extends Controller
             ->select('flights_dates.*','flights.codigo as codigo','origen.nombre as origen','destino.nombre as destino','airlines.nombre as aerolinea','porigen.nombre as paisorigen','pdestino.nombre as paisdestino','porigen.bandera as banderaorigen','pdestino.bandera as banderadestino','porigen.abrev as abvorigen','pdestino.abrev as abvdestino','origen.abrev as abvciudadorigen','destino.abrev as abvciudaddestino')
             ->get();
 
+        $cantidadAsientos = DB::table('categories_flights')
+        ->join('flights_dates','flights_dates.id','=','categories_flights.flight_date_id')
+        ->join('flights','flights.id','=','flights_dates.flight_id')
+        ->select('categories_flights.*','flights.id as id_vuelo')
+        ->get();
+
         $categoriasVuelos = DB::table('categories_flights')
             ->join('flights_dates','flights_dates.id','=','categories_flights.flight_date_id')
             ->join('flights','flights.id','=','flights_dates.flight_id')
@@ -29,11 +35,8 @@ class UserVuelos extends Controller
             ->get();
 
         // dd($categoriasVuelos);
+        // dd($cantidadAsientos);
         
-        return view('vistas.userVuelos',[
-            'paises'=>$paises,
-            'vuelos'=>$vuelos,
-            'categoriasVuelos'=>$categoriasVuelos,
-        ]);
+        return view('vistas.userVuelos',compact('paises', 'vuelos', 'categoriasVuelos', 'cantidadAsientos'));
     }
 }

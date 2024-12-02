@@ -2,6 +2,16 @@
 
 @section('content')
 
+@session('successAdd')
+        <script>
+            Swal.fire({
+                title: "¡Listo!",
+                text: "¡{{$value}}!",
+                icon: "success"
+            });
+        </script> 
+@endsession
+
 <div class="lg:flex md:grid lg:columns-2 md:columns-1 md:justify-items-center lg:gap-20">
     
 

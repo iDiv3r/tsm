@@ -132,8 +132,10 @@
                     </div>
                     
                     <div class="w-2/5 flex flex-col items-center h-min  px-5">
-                        
+                        <form action="{{route('reservarHotel')}}" method="POST">
                         {{-- asd --}}
+                        @csrf
+                        <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
                         <div id="date-range-picker" date-rangepicker class="flex flex-col items-center text-center justify-center" datepicker-format="dd-mm-yyyy">
                             <span class="mb-2">Fecha de llegada</span>
                             <div class="relative max-w-sm w-2/3 mb-4">
@@ -157,8 +159,8 @@
                         </div>
 
                         <div class="relative max-w-sm flex flex-col items-center  mb-4">
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Habitaciones</label>
-                            <select id="countries" class="w-min bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <label for="habitaciones" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Habitaciones</label>
+                            <select id="habitaciones" name="num_habitaciones" class="w-min bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -167,12 +169,12 @@
                             </select>
                         </div>
                     
-                        <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-2 mb-2">
+                        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-2 mb-2">
                             Agregar al carro
                             <i class="fa-solid fa-cart-shopping ms-1"></i>
                         </button>
                     </div>
-                    
+                </form>
                 </div>
             </div>
 

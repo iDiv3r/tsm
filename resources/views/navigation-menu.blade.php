@@ -1,26 +1,46 @@
-<nav x-data="{ open: false }" class="bg-white border-b-2 border-orange-500">
+<nav x-data="{ open: false }" class="bg-white border-b-4 border-orange-400">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
-                    </a>
-                </div>
+                <a href="{{route('dashboard')}}">
+                    <button style="cursor: pointer;" class="flex items-center mt-4 space-x-3 rtl:space-x-reverse">
+                        <img src="{{ asset('images/logo.svg') }}" class="h-8" alt="Flowbite Logo" />
+                        {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Turista Sin Maps</span> --}}
+                        <div class="flex self-center text-2xl font-semibold whitespace-nowrap ">
+                            <span class="hover:text-orange-500">T</span>
+                            <span class="hover:text-orange-500">u</span>
+                            <span class="hover:text-orange-500">r</span>
+                            <span class="hover:text-orange-500">i</span>
+                            <span class="hover:text-orange-500">s</span>
+                            <span class="hover:text-orange-500">t</span>
+                            <span class="hover:text-orange-500">a</span>
+            
+                            <span class="hover:text-orange-500 ms-2">S</span>
+                            <span class="hover:text-orange-500">i</span>
+                            <span class="hover:text-orange-500">n</span>
+            
+                            <span class="hover:text-orange-500 ms-2">M</span>
+                            <span class="hover:text-orange-500">a</span>
+                            <span class="hover:text-orange-500">p</span>
+                            <span class="hover:text-orange-500">s</span>
+                            
+                        </div>
+                    </button>
+                </a>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{-- <div class="hidden sm:-my-px sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Teams Dropdown -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                {{-- @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ms-3 relative">
                         <x-dropdown align="right" width="60">
                             <x-slot name="trigger">
@@ -69,7 +89,7 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-                @endif
+                @endif --}}
 
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">

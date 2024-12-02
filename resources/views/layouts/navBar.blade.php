@@ -67,7 +67,7 @@ bg-white
                     <span class="w-auto px-1">1</span>
                 </div>
 
-                <a href="{{ route('rutaCarrito') }}" class="place-self-center">
+                <a href="{{ route('miCarrito') }}" class="place-self-center">
                     <i class="fa-solid fa-cart-shopping fa-2xl hover:text-gray-600"></i>
                 </a>
                 <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-1 text-center">

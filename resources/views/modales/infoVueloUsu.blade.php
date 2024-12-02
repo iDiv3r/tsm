@@ -17,14 +17,28 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
+                <form action="{{route('reservarVuelo')}}" method="POST">
+                    @csrf
                 <div class="flex justify-around px-10 items-center">
-
-
                     {{-- <img src="https://pbs.twimg.com/profile_images/1833390522876014592/XRQudU2m_400x400.jpg" alt="" class=" w-2/5"> --}}
-
                     <div class="w-50">
-                    
                         <div class="grid columns-1">
+                            <span class="text-2xl font-medium">{{ $vuelo->aerolinea }}</span>
+        
+                        <div class="bg-gray-300 rounded flex items-center w-auto mt-2 shadow">
+                            <div class="justify-items-center grid columns-1">
+                                <span class="fi fi-{{ $vuelo->banderaorigen }} fa-2xl mx-3 mt-3"></span> 
+                                <span class="mt-1 text-xs font-bold">{{ $vuelo->abvorigen }}</span>
+                                <span class="mb-1 text-xs">{{ $vuelo->abvciudadorigen }}</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-right position-self-center mx-3 fa-xl hover:text-white"></i>
+        
+                            <div class="justify-items-center grid columns-1">
+                                <span class="fi fi-{{ $vuelo->banderadestino }} fa-2xl mx-3 mt-3"></span> 
+                                <span class="mt-1 text-xs font-bold">{{ $vuelo->abvdestino }}</span>
+                                <span class="mb-1 text-xs">{{ $vuelo->abvciudaddestino }}</span>
+                            </div>
+                        </div>
                     
                             <div class="h-min text-center grid columns-1 my-5">
                                 <div class="inline-block">
@@ -48,7 +62,7 @@
                             @endif
 
                             
-                            <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium
+                            <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium
                             rounded-lg text-sm px-5 py-2.5 mx-2 mb-2 mt-5">
                             Agregar al carro
                             <i class="fa-solid fa-cart-shopping ms-1"></i>
@@ -60,53 +74,48 @@
 
                     <div class="justify-items-center text-center">
     
-                        <span class="text-2xl font-medium">{{ $vuelo->aerolinea }}</span>
+                        
         
-                        <div class="bg-gray-300 rounded flex items-center w-auto mt-2 shadow">
-                            <div class="justify-items-center grid columns-1">
-                                <span class="fi fi-{{ $vuelo->banderaorigen }} fa-2xl mx-3 mt-3"></span> 
-                                <span class="mt-1 text-xs font-bold">{{ $vuelo->abvorigen }}</span>
-                                <span class="mb-1 text-xs">{{ $vuelo->abvciudadorigen }}</span>
-                            </div>
-                            <i class="fa-solid fa-arrow-right position-self-center mx-3 fa-xl hover:text-white"></i>
-        
-                            <div class="justify-items-center grid columns-1">
-                                <span class="fi fi-{{ $vuelo->banderadestino }} fa-2xl mx-3 mt-3"></span> 
-                                <span class="mt-1 text-xs font-bold">{{ $vuelo->abvdestino }}</span>
-                                <span class="mb-1 text-xs">{{ $vuelo->abvciudaddestino }}</span>
-                            </div>
-                        </div>
-        
-                        <div class="text-center mt-3 grid columns-1 gap-5">
-                            <span class="text-2xl text-green-400 font-semibold" id="sel-{{ $vuelo->id }}-precio">
+                        <div class="text-center grid columns-1 gap-1">
+                            {{-- <span class="text-2xl text-green-400 font-semibold" id="sel-{{ $vuelo->id }}-precio">
                                 @foreach ($categoriasVuelos as $cv)
                                     @if ($cv->flight_date_id == $vuelo->id && $cv->categoria == 'Clase Turista')
                                         ${{ $cv->precio }}
                                     @endif
-                                @endforeach    
-                            </span>
+                                @endforeach
+                            </span> --}}
                             {{-- <span>Clase Turista</span> --}}
-                            <div class="max-w-sm mx-auto">
-                                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleccionar Clase</label>
-                                <select id="sel-{{ $vuelo->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @foreach ($categoriasVuelos as $cv)
-                                    @if ($cv->flight_date_id == $vuelo->id)
-                                        <option value="{{ $cv->categoria}}">{{ $cv->categoria}}</option>
+                            <span class="mb-2 font-bold">Asientos Disponibles:</span>
+                            @foreach ($cantidadAsientos as $ca)
+                            @if ($ca->flight_date_id == $vuelo->id)
+                                    <span class="text-sm font-bold">{{$ca->categoria}}: {{$ca->disponibles}}</span>
+                                    @foreach ($categoriasVuelos as $cv)
+                                    @if ($cv->flight_date_id == $vuelo->id && $cv->categoria == $ca->categoria)
+                                        ${{ $cv->precio }} c/u
                                     @endif
                                 @endforeach
+                            @endif
+                            @endforeach
+                            <div class="max-w-sm mx-auto">
+                                <hr>
+                                <label for="clase" class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Seleccionar Clase</label>
+                                <select id="select-class-{{ $vuelo->id }}" name="select-class-{{$vuelo->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    @foreach ($categoriasVuelos as $cv)
+                                    @if ($cv->flight_date_id == $vuelo->id)
+                                    <option value="{{ $cv->categoria}}">{{ $cv->categoria}}</option>
+                                    @endif
+                                    @endforeach
                                     {{-- <option value="3">Clase Turista</option>
-                                <option value="2">Clase Ejecutiva</option>
-                                <option value="1">Primera Clase</option> --}}
+                                    <option value="2">Clase Ejecutiva</option>
+                                    <option value="1">Primera Clase</option> --}}
                                 </select>
+                                <label for="clase" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Asientos</label>
+                                <input type="number" name="asientos" value="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <input type="text" name="flight_id" value="{{$vuelo->id}}" hidden>
                             </div>
-
-                            
-
-
                         </div>
                     </div>
-        
-                    
+                    </form>
                 </div>
 
                 {{-- <div class="flex justify-between px-10 pt-5">
@@ -145,8 +154,7 @@
 
                 </div> --}}
 
-                <div class="border-t-4 border-t-orange-800 p-8">
-
+                {{-- <div class="border-t-4 border-t-orange-800 p-8">
                     <div class="text-center">
                         <span class="text-2xl font-semibold">Comentarios</span>
                     </div>
@@ -157,7 +165,7 @@
                             
                         </div>
                         <div class="">
-                            {{-- <div class="rating-wrapper-hl mb-1">
+                            <div class="rating-wrapper-hl mb-1">
             
                                 <!-- star 5 -->
                                 
@@ -189,7 +197,7 @@
                                 <i class="fas fa-star d-inline-block fa-2xs"></i>
                                 </label>
                                 
-                            </div> --}}
+                            </div>
 
                             <x-static_star_rating></x-static_star_rating>
                             <p class="mt-2">
@@ -197,8 +205,7 @@
                             </p>
                         </div>
                     </div>
-
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

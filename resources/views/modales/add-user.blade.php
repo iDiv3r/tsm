@@ -27,27 +27,16 @@
                             <small> {{ $errors->first('txtNombre') }}</small>
                         </div>
                         <div class="col-span-2">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellidos</label>
-                            <input type="text" name="txtApellidos" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtApellidos')}}" >
-                            <small> {{ $errors->first('txtApellidos') }}</small>
-                        </div>
-                        
-                        <div class="col-span-2">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
                             <input type="text" name="txtCorreo" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('txtCorreo')}}" >
                             <small> {{ $errors->first('txtCorreo') }}</small>
-                        </div>
-                        <div class="col-span-2">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
-                            <input type="number" name="intTelefono" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('intTelefono')}}">
-                            <small> {{ $errors->first('intTelefono') }} </small>
                         </div>
                         <div class="col-span-4">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rol</label>
                             <select id="" name="selectRol" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('selectRol')}}">
                             <small> {{ $errors->first('selectRol') }} </small>
-                                <option selected="">Administrador</option>
-                                <option value="AA">Usuario</option>
+                                <option selected="" value="1">Administrador</option>
+                                <option value="0">Usuario</option>
                             </select>
                         </div>
                         <div class="col-span-2">
