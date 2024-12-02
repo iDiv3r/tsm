@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Airline;
+use App\Models\FlightsDates;
 use Illuminate\Support\Facades\DB;
 
 class UserVuelos extends Controller
@@ -125,8 +126,19 @@ class UserVuelos extends Controller
             ->join('flights_dates', 'flights_dates.id', '=', 'categories_flights.flight_date_id')
             ->join('flights', 'flights.id', '=', 'flights_dates.flight_id')
             ->select('categories_flights.*', 'flights.id as id_vuelo')
-            ->get();
-
+            ->when(!empty($escalas), function ($query) use ($escalas) {
+                return $query->where('flights.escalas', $escalas);
+            })
+            ->when(!empty($aerolinea), function ($query) use ($aerolinea) {
+                return $query->whereIn('flights.airline_id', $aerolinea);
+            })
+            ->when(!empty($destino), function ($query) use ($destino) {
+                return $query->where('flights.destination_id', $destino);
+            })
+            ->when(!empty($origen), function ($query) use ($origen) {
+                return $query->where('flights.origin_id', $origen);
+            });
+            
         // dd($categoriasVuelos);
 
         $ciudades = City::get();
@@ -137,6 +149,8 @@ class UserVuelos extends Controller
         $getciudades = City::get();
         //Obtener aerolineas
         $getaerolineas = Airline::get();
+
+        $categoriasVuelos = FlightsDates::get();
 
         return view('vistas.userVuelos', [
             'paises' => $paises,

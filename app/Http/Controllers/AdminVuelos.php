@@ -344,10 +344,12 @@ class AdminVuelos extends Controller
             'rango' => 'required|unique:posts|max:255',
         ]);*/
 
-        if (isset($request->escala)) {
-            $escalas = "si";
+        if (isset($request->directo)) {
+            $escalas = 'no';
+        } elseif (isset($request->escalado)) {
+            $escalas = 'si';
         } else {
-            $escalas = "no";
+            $escalas = 'no';
         }
 
 

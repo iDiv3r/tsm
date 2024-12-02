@@ -295,7 +295,7 @@
                     <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
                         <div class="py-5 border-b border-gray-200 ">
                             
-                            <x-checkbox-input name="directo" value="1"  id="directo" status="1">
+                            <x-checkbox-input name="directo" value="0"  id="directo" status="1">
                                 Directo
                             </x-checkbox-input>
 
