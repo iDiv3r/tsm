@@ -16,17 +16,16 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" method="POST" action="/adminDestinosadd">
+            <form class="p-4 md:p-5" method="POST" action="{{route('agregarDestino')}}">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2 sm:col-span-2">
                         <label for="pais" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">País:</label>
                         <select id="pais" name="pais" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option value="">Selecciona un país</option>
-                            <option value="TV">México</option>
-                            <option value="PC">España</option>
-                            <option value="GA">E.U</option>
-                            <option value="PH">Francia</option>
+                            @foreach($paises as $pais)
+                                <option value="{{$pais->id}}">{{$pais->nombre}}</option>
+                            @endforeach
                         </select>
                         <small class="text-red-900">{{$errors->first('pais')}}</small>
                     </div>
@@ -34,25 +33,22 @@
                         <label for="ciudad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciudad:</label>
                         <select id="ciudad" name="ciudad" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option value="">Selecciona una ciudad</option>
-                            <option value="TV">México</option>
-                            <option value="PC">España</option>
-                            <option value="GA">E.U</option>
-                            <option value="PH">Francia</option>
+                            @foreach($ciudades as $ciudad)
+                                <option value="{{$ciudad->id}}">{{$ciudad->nombre}}</option>
+                            @endforeach
                         </select>
                         <small class="text-red-900">{{$errors->first('ciudad')}}</small>
                     </div>
                     <div class="col-span-2 sm:col-span-2">
-                        <label for="aeropuerto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aeropuerto:</label>
-                        <select id="aeropuerto" name="aeropuerto" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option value="">Selecciona un aeropuerto</option>
-                            <option value="TV">México</option>
-                            <option value="PC">España</option>
-                            <option value="GA">E.U</option>
-                            <option value="PH">Francia</option>
+                        <label for="aerolinea" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aerolinea:</label>
+                        <select id="aerolinea" name="aerolinea" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value="">Selecciona una aerolinea</option>
+                            @foreach($aerolineas as $aerolinea)
+                                <option value="{{$aerolinea->id}}">{{$aerolinea->nombre}}</option>
+                            @endforeach
                         </select>
-                        <small class="text-red-900">{{$errors->first('aeropuerto')}}</small>
+                        <small class="text-red-900">{{$errors->first('aerolinea')}}</small>
                     </div>
-                    
                 </div>
                 <button type="submit" class= " text-white flex   justify-self-center bg-green-600 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
