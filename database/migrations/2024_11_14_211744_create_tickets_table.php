@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('estado');
             $table->date('fecha_adquisicion');
+            $table->string('clase');
+            $table->integer('cantidad_asientos');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('flight_id');
 

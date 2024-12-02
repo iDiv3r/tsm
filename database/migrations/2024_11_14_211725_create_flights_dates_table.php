@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('fecha_salida');
             $table->string('fecha_regreso');
             $table->string('hora_salida');
+            $table->string('estado')->default('activo');
             $table->unsignedBigInteger('flight_id');
 
             $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');

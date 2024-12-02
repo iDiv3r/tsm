@@ -20,14 +20,14 @@ Route::view('/administrador/destinos','vistas.destinosADM');
 
 
 
-Route::get('/v2',[UserVuelos::class,'index'])->name('rutaVuelosUsuarios');
+Route::get('/vuelos',[UserVuelos::class,'index'])->name('rutaVuelosUsuarios');
 
 
-Route::get('/c',[ViewsController::class,'carrito'])->name('rutaCarrito');
+// Route::get('/c',[ViewsController::class,'carrito'])->name('rutaCarrito');
 
 
 
-Route::get('/h',[UserHoteles::class,'mostrar'])->name('rutaHotelesUsuarios');
+Route::get('/hoteles',[UserHoteles::class,'mostrar'])->name('rutaHotelesUsuarios');
 
 
 // Route::get('/hoteles',[UserHoteles::class,'index'])->name('rutaHotelesUsuarios');

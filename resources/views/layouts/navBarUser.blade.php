@@ -59,17 +59,22 @@ bg-white
             <div class="flex ms-5">
 
                 
-                {{-- <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="w-min font-medium rounded-lg py-2.5 text-center inline-flex items-center" type="button" data-dropdown-offset-skidding="120" data-dropdown-placement="left">
+                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="w-min font-medium rounded-lg py-2.5 text-center inline-flex items-center" type="button" data-dropdown-offset-skidding="120" data-dropdown-placement="left">
                     <i class="fa-solid fa-bell fa-2xl hover:text-gray-600"></i>
                 </button>
                 
                 <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full text-center me-4">
                     <span class="w-auto px-1">1</span>
-                </div> --}}
+                </div>
                 
-                {{-- <a href="{{ route('miCarrito') }}" class="place-self-center">
+                <a href="{{ route('miCarrito') }}" class="place-self-center">
                     <i class="fa-solid fa-cart-shopping fa-2xl hover:text-gray-600"></i>
-                </a> --}}
+                </a>
+                @if ($cantidadItemsCarrito > 0)
+                    <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-1 text-center">
+                        <span class="w-auto px-1">{{$cantidadItemsCarrito}}</span>
+                    </div>
+                @endif
                 {{-- <div class="text-[9px] text-white place-self-start bg-red-600 w-auto rounded-full ms-1 text-center">
                     <span class="w-auto px-1">1 </span>
                 </div> --}}
@@ -117,6 +122,24 @@ bg-white
             <li>
                 <span href="#" class="block px-4 py-2 text-xl text-black font-bold hover:bg-gray-100 border-b-2 border-gray-200">Notificaciones</span>
             </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homero</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Hola</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homero</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cerveza :talking_head: :flame:</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homero</span>
+            </li>
+            <li>
+                <span href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Eso me gusta</span>
+            </li>
         </ul> 
     </div>
     
@@ -124,7 +147,7 @@ bg-white
 
 {{-- Off Canvas Drawer --}}
 <div id="drawer-example" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
-        <h5 id="drawer-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">Administrador</h5>
+        <h5 id="drawer-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">Usuario</h5>
         <button type="button" data-drawer-hide="drawer-example" aria-controls="drawer-example" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -135,34 +158,29 @@ bg-white
         <div class="">
             <div class="h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
-                    <li>
+                    {{-- <li class="pt-4 mt-4 space-y-2 font-medium border-t-4 border-gray-500 dark:border-gray-700">
                         <a href="{{route('rutaadminDestino')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-map-location fa-xl"></i>
-                            <span class="ms-3">Destinos Admin</span>
+                            <span class="ms-3">Destinos</span>
                         </a>
-                    </li> 
-                
+                    </li> --}}
                     <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                        <a href="{{route('rutaAdminVuelos')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="{{route('rutaHotelesUsuarios')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i class="fa-solid fa-hotel fa-xl"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Hoteles</span>
+                        </a>
+                    </li>
+
+                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                        <a href="{{route('rutaVuelosUsuarios')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fa-solid fa-plane-departure fa-xl"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Vuelos Admin</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Vuelos</span>
                             
                         </a>
                     </li>
                 
-                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                        <a href="{{route('hotelesAdministrador')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="fa-solid fa-hotel fa-xl"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Hoteles Admin</span>
-                        </a>
-                    </li>
-                
-                    <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                        <a href="{{route('rutaadminReporte')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="fa-solid fa-file fa-xl"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Reportes Admin</span>
-                        </a>
-                    </li>
+                    
+
                     <li class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
