@@ -84,6 +84,18 @@ class UserHoteles extends Controller
         $hotelesReservados = count($hotelesReservados);
         $cantidadItemsCarrito = $vuelosReservados + $hotelesReservados;
 
+        $idsHotelesReservados = DB::table('hotel_carts')
+            ->select('hotel_id')
+            ->where('user_id', '=', Auth::user()->id)
+            ->pluck('hotel_id')
+            ->toArray();
+        
+        // dd($idsHotelesReservados);
+
+        $comentarios = DB::table('hotel_comments')
+            ->select('hotel_comments.*')
+            ->get();
+
 
         return view('vistas.userHoteles',[
             'paises'=>$paises,
@@ -93,7 +105,9 @@ class UserHoteles extends Controller
             'imagenes'=>$imagenes,
             'cantidadItemsCarrito'=>$cantidadItemsCarrito,
             'precios'=>$precios,
-            'servicios'=>$servicios
+            'servicios'=>$servicios,
+            'idsHotelesReservados'=>$idsHotelesReservados,
+            'comentarios'=>$comentarios
         ]);
     }
 
@@ -202,5 +216,27 @@ class UserHoteles extends Controller
         ->get();
 
         return $this->mostrar($hoteles);
+    }
+
+    public function agregarComentario(Request $request)
+    {   
+        // dd($request->post());
+        $validate = $request->validate([
+            'calificacion' => 'required|numeric|min:1|max:5',
+            'comentario' => 'required'
+        ]);
+        
+        $calificacion = $request->input('calificacion');
+        $comentario = $request->input('comentario');
+        $idHotel = $request->input('idHotelComentario');
+
+        DB::table('hotel_comments')->insert([
+            'hotel_id'=>$idHotel,
+            'user_id'=>Auth::user()->id,
+            'calificacion'=>$calificacion,
+            'comentario'=>$comentario
+        ]);
+
+        return $this->mostrar();
     }
 }

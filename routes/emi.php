@@ -33,4 +33,6 @@ Route::post('/filtrarHotelesAdmin',[AdminHoteles::class,'filtrarHoteles'])->name
 
 Route::post('/filtrarHoteles',[UserHoteles::class,'filtrarHoteles'])->name('rutaFiltrarHotelesUsuario');
 
+Route::post('/agregarComentario',[UserHoteles::class,'agregarComentario'])->name('rutaAgregarComentario');
+
 // Route::get('/hoteles',[UserHoteles::class,'index'])->name('rutaHotelesUsuarios');
