@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('num_noches');
             $table->tinyInteger('num_habitaciones');
-            $table->date('checkin');
-            $table->date('checkout');
+            $table->string('checkin');
+            $table->string('checkout');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('hotel_id');
 
